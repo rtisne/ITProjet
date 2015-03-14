@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Projet Informatique Théorique 2015:  Fichier source de rationnel.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Projet Informatique Théorique 2015
+   </div>
+   <div id="projectbrief">Instructions et Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">rationnel.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="rationnel_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *   Ce fichier fait partie d&#39;un projet de programmation donné en Licence 3 </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *   à l&#39;Université de Bordeaux.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *   Copyright (C) 2015 Giuliana Bianchi, Adrien Boussicault, Thomas Place, Marc Zeitoun</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *    the Free Software Foundation, either version 2 of the License, or</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef __RATIONNEL_H__</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define __RATIONNEL_H__</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="automate_8h.html">automate.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;ensemble.h&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">   42</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a> {<a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a1fa5920d8d419e0b8036e2dbada9a882">EPSILON</a>,    </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522ac499121755afed4aab58c919bb4301ec">   43</a></span>&#160;                    <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522ac499121755afed4aab58c919bb4301ec">LETTRE</a>,     </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9d398750ed310ae69cd070016810e4dc">   44</a></span>&#160;                    <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9d398750ed310ae69cd070016810e4dc">STAR</a>,       </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a4cf5e96eb7880eb38df303a6e5759afd">   45</a></span>&#160;                    <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a4cf5e96eb7880eb38df303a6e5759afd">UNION</a>,      </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9044fbb1b4b9307bcd680468a58c22f2">   46</a></span>&#160;                    <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9044fbb1b4b9307bcd680468a58c22f2">CONCAT</a>      </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_rationnel.html">   58</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_rationnel.html">Rationnel</a> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="struct_rationnel.html#a53a75fc82fe5a1b0661fe853a014dd78">   59</a></span>&#160;   <a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a> <a class="code" href="struct_rationnel.html#a53a75fc82fe5a1b0661fe853a014dd78">etiquette</a>;             </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="struct_rationnel.html#ab518a7e3d5bc01e70b084796bc7d57c2">   61</a></span>&#160;   <span class="keywordtype">char</span> <a class="code" href="struct_rationnel.html#ab518a7e3d5bc01e70b084796bc7d57c2">lettre</a>;                 </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_rationnel.html#a29af9b4642503c68375d4473577f3fd1">   63</a></span>&#160;   <span class="keyword">struct </span><a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="struct_rationnel.html#a29af9b4642503c68375d4473577f3fd1">gauche</a>;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="struct_rationnel.html#abfcc8a6f7579a95a72893ec02d95b7f5">   69</a></span>&#160;   <span class="keyword">struct </span><a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="struct_rationnel.html#abfcc8a6f7579a95a72893ec02d95b7f5">droit</a>;     </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="struct_rationnel.html#a9f5612224651f304b5141f2805cbd3e3">   73</a></span>&#160;   <span class="keyword">struct </span><a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="struct_rationnel.html#a9f5612224651f304b5141f2805cbd3e3">pere</a>;      </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="struct_rationnel.html#aae0c3f284ecad17be7a170e5082aeefb">   74</a></span>&#160;   <span class="keywordtype">int</span> <a class="code" href="struct_rationnel.html#aae0c3f284ecad17be7a170e5082aeefb">position_min</a>;            </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="struct_rationnel.html#adc2a0297409b28f688570075f235e752">position_max</a>;            </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;   <span class="keywordtype">void</span> * <a class="code" href="struct_rationnel.html#ab3a6d5ea7893d8f2365addd35ddafd87">data</a>;                 </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} <a class="code" href="rationnel_8h.html#a2e72bbbbba0e0e374d9250b6ab183b97">Rationnel</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="rationnel_8h.html#af387500f052b3fd34d477936c03caefc">  110</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="struct_rationnel.html">Rationnel</a> *** <a class="code" href="rationnel_8h.html#af387500f052b3fd34d477936c03caefc">Systeme</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a8edb6aee8972374304d59e60ac717747">rationnel</a>(<a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a> <a class="code" href="struct_rationnel.html#a53a75fc82fe5a1b0661fe853a014dd78">etiquette</a>, <span class="keywordtype">char</span> <a class="code" href="struct_rationnel.html#ab518a7e3d5bc01e70b084796bc7d57c2">lettre</a>, <span class="keywordtype">int</span> <a class="code" href="struct_rationnel.html#aae0c3f284ecad17be7a170e5082aeefb">position_min</a>, <span class="keywordtype">int</span> <a class="code" href="struct_rationnel.html#adc2a0297409b28f688570075f235e752">position_max</a>, <span class="keywordtype">void</span> *<a class="code" href="struct_rationnel.html#ab3a6d5ea7893d8f2365addd35ddafd87">data</a>, <a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="struct_rationnel.html#a29af9b4642503c68375d4473577f3fd1">gauche</a>, <a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="struct_rationnel.html#abfcc8a6f7579a95a72893ec02d95b7f5">droit</a>, <a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#aed767d7f51bd90eebfd5e7beedd184ff">pere</a>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a6097bb0c3f7fd0d86f2559a2ebb04c5a">Epsilon</a>();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a849fbfe25ed6446909b15f62eaf1fb31">Lettre</a>(<span class="keywordtype">char</span> <a class="code" href="struct_rationnel.html#ab518a7e3d5bc01e70b084796bc7d57c2">lettre</a>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a4dfadbe883b5ba11a7ef95c23edf2327">Union</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat1, <a class="code" href="struct_rationnel.html">Rationnel</a>* rat2);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a7d79f20c0ce60d3641cc2ad62a9924ed">Concat</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat1, <a class="code" href="struct_rationnel.html">Rationnel</a>* rat2);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a62965ad96d4743f1e55ca2248a43d9d4">Star</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rationnel_8h.html#ac7140bfea99155b1978567ad1c5527dd">est_racine</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<a class="code" href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a> <a class="code" href="rationnel_8h.html#a81044b7a7f1dee8e02114980ffdbdaae">get_etiquette</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keywordtype">char</span> <a class="code" href="rationnel_8h.html#a25b964848f743e0628b4bbc65e3ff02b">get_lettre</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rationnel_8h.html#ab9291b687053f3bbff5fbbe597d2aa38">get_position_min</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rationnel_8h.html#afe09ba08420dbd2054effdbf6007f356">get_position_max</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#ae5658b1572308d31bec91711132a575e">set_position_min</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat, <span class="keywordtype">int</span> valeur);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#a1de3ca489fdb9f1987e047675d458343">set_position_max</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat, <span class="keywordtype">int</span> valeur);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a18693a61d6c570066345534c09792dfb">fils_gauche</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a2abe257cfb24739dce8dd8a4f00235b7">fils_droit</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a1f175bfbd0f3b7002438a0a334e6239c">fils</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#aed767d7f51bd90eebfd5e7beedd184ff">pere</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#a3a77d441ef94d0f66381eb5eb690c736">print_rationnel</a>(<a class="code" href="struct_rationnel.html">Rationnel</a>* rat);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a18133bb5d286303648a396bbb813e5d9">expression_to_rationnel</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *expr);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#a5055c41943d219c1df9811e821789ae0">rationnel_to_dot</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat, <span class="keywordtype">char</span>* nom_fichier);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rationnel_8h.html#a79c36a0b32e660247b412654abf500b4">rationnel_to_dot_aux</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat, FILE *output, <span class="keywordtype">int</span> <a class="code" href="rationnel_8h.html#aed767d7f51bd90eebfd5e7beedd184ff">pere</a>, <span class="keywordtype">int</span> noeud_courant);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#adc7d42c87f09903c55b95413088f261d">numeroter_rationnel</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rationnel_8h.html#ad65a97d20896d708ac6d1e78b5602240">contient_mot_vide</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a> *<a class="code" href="rationnel_8h.html#a336d18d6276995574121a90ee7acae66">premier</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a> *<a class="code" href="rationnel_8h.html#a6f2680d038423662f53881cc8ff00f46">dernier</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a> *<a class="code" href="rationnel_8h.html#abd8cb23739996a8edec14a81a70f1eb7">suivant</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<a class="code" href="struct_automate.html">Automate</a> *<a class="code" href="rationnel_8h.html#aa5fde3af806ed18716df622db7444433">Glushkov</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> *rat);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rationnel_8h.html#a14da001256a091ddf5510bdc120fdd6e">meme_langage</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *expr1, <span class="keyword">const</span> <span class="keywordtype">char</span>* expr2);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<a class="code" href="struct_rationnel.html">Systeme</a> <a class="code" href="rationnel_8h.html#a5b400af4d47ebab3b117832c32a3ddd8">systeme</a>(<a class="code" href="struct_automate.html">Automate</a> *automate);</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#a993fee441521ae8748bfba521ca34500">print_ligne</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> **ligne, <span class="keywordtype">int</span> nb_vars);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rationnel_8h.html#afe8140248206a5532c70b515d6707590">print_systeme</a>(<a class="code" href="struct_rationnel.html">Systeme</a> <a class="code" href="rationnel_8h.html#a5b400af4d47ebab3b117832c32a3ddd8">systeme</a>, <span class="keywordtype">int</span> taille);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> **<a class="code" href="rationnel_8h.html#a7f8a91d901ad71fa2a876f22b89640bf">resoudre_variable_arden</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> **ligne, <span class="keywordtype">int</span> numero_variable, <span class="keywordtype">int</span> nb_vars);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> **<a class="code" href="rationnel_8h.html#a8a51a61b3c58fe7791d89e3865262c6f">substituer_variable</a>(<a class="code" href="struct_rationnel.html">Rationnel</a> **ligne, <span class="keywordtype">int</span> numero_variable, <a class="code" href="struct_rationnel.html">Rationnel</a> **valeur_variable, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<a class="code" href="struct_rationnel.html">Systeme</a> <a class="code" href="rationnel_8h.html#a20868d672b1c9c549af3a67d8e08353b">resoudre_systeme</a>(<a class="code" href="struct_rationnel.html">Systeme</a> sys, <span class="keywordtype">int</span> nb_vars);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<a class="code" href="struct_rationnel.html">Rationnel</a> *<a class="code" href="rationnel_8h.html#a03a8992d6098ed18a16ea29467d83c77">Arden</a>(<a class="code" href="struct_automate.html">Automate</a> *automate);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="rationnel_8h_html_adc7d42c87f09903c55b95413088f261d"><div class="ttname"><a href="rationnel_8h.html#adc7d42c87f09903c55b95413088f261d">numeroter_rationnel</a></div><div class="ttdeci">void numeroter_rationnel(Rationnel *rat)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00282">rationnel.c:282</a></div></div>
+<div class="ttc" id="struct_rationnel_html_a53a75fc82fe5a1b0661fe853a014dd78"><div class="ttname"><a href="struct_rationnel.html#a53a75fc82fe5a1b0661fe853a014dd78">Rationnel::etiquette</a></div><div class="ttdeci">Noeud etiquette</div><div class="ttdoc">Le type de l&#39;expression. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00059">rationnel.h:59</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522a9d398750ed310ae69cd070016810e4dc"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9d398750ed310ae69cd070016810e4dc">STAR</a></div><div class="ttdoc">Etoile. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00044">rationnel.h:44</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a7d79f20c0ce60d3641cc2ad62a9924ed"><div class="ttname"><a href="rationnel_8h.html#a7d79f20c0ce60d3641cc2ad62a9924ed">Concat</a></div><div class="ttdeci">Rationnel * Concat(Rationnel *rat1, Rationnel *rat2)</div><div class="ttdoc">Construit le produit (la concaténation) de deux rationnels. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00074">rationnel.c:74</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a6097bb0c3f7fd0d86f2559a2ebb04c5a"><div class="ttname"><a href="rationnel_8h.html#a6097bb0c3f7fd0d86f2559a2ebb04c5a">Epsilon</a></div><div class="ttdeci">Rationnel * Epsilon()</div><div class="ttdoc">Alloue et remplit une structure Rationnel initialisée à une feuille "mot vide". </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00051">rationnel.c:51</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a2abe257cfb24739dce8dd8a4f00235b7"><div class="ttname"><a href="rationnel_8h.html#a2abe257cfb24739dce8dd8a4f00235b7">fils_droit</a></div><div class="ttdeci">Rationnel * fils_droit(Rationnel *rat)</div><div class="ttdoc">Renvoie le fils droit d&#39;une expression rationnelle UNION ou CONCAT. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00141">rationnel.c:141</a></div></div>
+<div class="ttc" id="rationnel_8h_html_ae5658b1572308d31bec91711132a575e"><div class="ttname"><a href="rationnel_8h.html#ae5658b1572308d31bec91711132a575e">set_position_min</a></div><div class="ttdeci">void set_position_min(Rationnel *rat, int valeur)</div><div class="ttdoc">Affecte la position minimale d&#39;une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00121">rationnel.c:121</a></div></div>
+<div class="ttc" id="struct_automate_html"><div class="ttname"><a href="struct_automate.html">Automate</a></div><div class="ttdoc">Le type d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8h_source.html#l00039">automate.h:39</a></div></div>
+<div class="ttc" id="struct_rationnel_html_a9f5612224651f304b5141f2805cbd3e3"><div class="ttname"><a href="struct_rationnel.html#a9f5612224651f304b5141f2805cbd3e3">Rationnel::pere</a></div><div class="ttdeci">struct Rationnel * pere</div><div class="ttdoc">Le noeud père. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00073">rationnel.h:73</a></div></div>
+<div class="ttc" id="rationnel_8h_html_afe8140248206a5532c70b515d6707590"><div class="ttname"><a href="rationnel_8h.html#afe8140248206a5532c70b515d6707590">print_systeme</a></div><div class="ttdeci">void print_systeme(Systeme systeme, int taille)</div><div class="ttdoc">Affiche un système d&#39;équations. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00333">rationnel.c:333</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a79c36a0b32e660247b412654abf500b4"><div class="ttname"><a href="rationnel_8h.html#a79c36a0b32e660247b412654abf500b4">rationnel_to_dot_aux</a></div><div class="ttdeci">int rationnel_to_dot_aux(Rationnel *rat, FILE *output, int pere, int noeud_courant)</div><div class="ttdoc">Fonction auxiliaire d&#39;export d&#39;un arbre syntaxique d&#39;une expression vers un fichier dot...</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00235">rationnel.c:235</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a20868d672b1c9c549af3a67d8e08353b"><div class="ttname"><a href="rationnel_8h.html#a20868d672b1c9c549af3a67d8e08353b">resoudre_systeme</a></div><div class="ttdeci">Systeme resoudre_systeme(Systeme sys, int nb_vars)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00352">rationnel.c:352</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a8a51a61b3c58fe7791d89e3865262c6f"><div class="ttname"><a href="rationnel_8h.html#a8a51a61b3c58fe7791d89e3865262c6f">substituer_variable</a></div><div class="ttdeci">Rationnel ** substituer_variable(Rationnel **ligne, int numero_variable, Rationnel **valeur_variable, int n)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00347">rationnel.c:347</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a5055c41943d219c1df9811e821789ae0"><div class="ttname"><a href="rationnel_8h.html#a5055c41943d219c1df9811e821789ae0">rationnel_to_dot</a></div><div class="ttdeci">void rationnel_to_dot(Rationnel *rat, char *nom_fichier)</div><div class="ttdoc">Exporte l&#39;arbre syntaxique d&#39;une expression rationnelle dans un fichier dot. Dans chaque noeud...</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00229">rationnel.c:229</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522a4cf5e96eb7880eb38df303a6e5759afd"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a4cf5e96eb7880eb38df303a6e5759afd">UNION</a></div><div class="ttdoc">Union. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00045">rationnel.h:45</a></div></div>
+<div class="ttc" id="struct_rationnel_html"><div class="ttname"><a href="struct_rationnel.html">Rationnel</a></div><div class="ttdoc">Le type décrivant une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00058">rationnel.h:58</a></div></div>
+<div class="ttc" id="rationnel_8h_html_aa5fde3af806ed18716df622db7444433"><div class="ttname"><a href="rationnel_8h.html#aa5fde3af806ed18716df622db7444433">Glushkov</a></div><div class="ttdeci">Automate * Glushkov(Rationnel *rat)</div><div class="ttdoc">Retourne l&#39;automate de Glushkov associé à une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00307">rationnel.c:307</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a18133bb5d286303648a396bbb813e5d9"><div class="ttname"><a href="rationnel_8h.html#a18133bb5d286303648a396bbb813e5d9">expression_to_rationnel</a></div><div class="ttdeci">Rationnel * expression_to_rationnel(const char *expr)</div><div class="ttdoc">Construit le rationnel correspondant à une expression expr, donnée sous forme d&#39;une chaîne de caractè...</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00205">rationnel.c:205</a></div></div>
+<div class="ttc" id="struct_rationnel_html_a29af9b4642503c68375d4473577f3fd1"><div class="ttname"><a href="struct_rationnel.html#a29af9b4642503c68375d4473577f3fd1">Rationnel::gauche</a></div><div class="ttdeci">struct Rationnel * gauche</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00063">rationnel.h:63</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522ac499121755afed4aab58c919bb4301ec"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522ac499121755afed4aab58c919bb4301ec">LETTRE</a></div><div class="ttdoc">Lettre. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00043">rationnel.h:43</a></div></div>
+<div class="ttc" id="rationnel_8h_html_af387500f052b3fd34d477936c03caefc"><div class="ttname"><a href="rationnel_8h.html#af387500f052b3fd34d477936c03caefc">Systeme</a></div><div class="ttdeci">Rationnel *** Systeme</div><div class="ttdoc">Un système d&#39;équations est représenté par un tableau à 2 dimensions. Chaque case du tableau contient ...</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00110">rationnel.h:110</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a849fbfe25ed6446909b15f62eaf1fb31"><div class="ttname"><a href="rationnel_8h.html#a849fbfe25ed6446909b15f62eaf1fb31">Lettre</a></div><div class="ttdeci">Rationnel * Lettre(char lettre)</div><div class="ttdoc">Alloue et remplit une structure Rationnel, initialisée à une feuille "lettre". </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00056">rationnel.c:56</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a1de3ca489fdb9f1987e047675d458343"><div class="ttname"><a href="rationnel_8h.html#a1de3ca489fdb9f1987e047675d458343">set_position_max</a></div><div class="ttdeci">void set_position_max(Rationnel *rat, int valeur)</div><div class="ttdoc">Affecte la position maximale d&#39;une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00128">rationnel.c:128</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a8edb6aee8972374304d59e60ac717747"><div class="ttname"><a href="rationnel_8h.html#a8edb6aee8972374304d59e60ac717747">rationnel</a></div><div class="ttdeci">Rationnel * rationnel(Noeud etiquette, char lettre, int position_min, int position_max, void *data, Rationnel *gauche, Rationnel *droit, Rationnel *pere)</div><div class="ttdoc">Alloue et remplit une structure Rationnel, et renvoie son adresse. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00035">rationnel.c:35</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a62965ad96d4743f1e55ca2248a43d9d4"><div class="ttname"><a href="rationnel_8h.html#a62965ad96d4743f1e55ca2248a43d9d4">Star</a></div><div class="ttdeci">Rationnel * Star(Rationnel *rat)</div><div class="ttdoc">Construit l&#39;étoile d&#39;un rationnel. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00088">rationnel.c:88</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a81044b7a7f1dee8e02114980ffdbdaae"><div class="ttname"><a href="rationnel_8h.html#a81044b7a7f1dee8e02114980ffdbdaae">get_etiquette</a></div><div class="ttdeci">Noeud get_etiquette(Rationnel *rat)</div><div class="ttdoc">Renvoie le type de noeud d&#39;un rationnel. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00098">rationnel.c:98</a></div></div>
+<div class="ttc" id="struct_rationnel_html_ab3a6d5ea7893d8f2365addd35ddafd87"><div class="ttname"><a href="struct_rationnel.html#ab3a6d5ea7893d8f2365addd35ddafd87">Rationnel::data</a></div><div class="ttdeci">void * data</div><div class="ttdoc">Donnée additionnelle, non utilisée dans le cadre de ce projet. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00089">rationnel.h:89</a></div></div>
+<div class="ttc" id="rationnel_8h_html_ad65a97d20896d708ac6d1e78b5602240"><div class="ttname"><a href="rationnel_8h.html#ad65a97d20896d708ac6d1e78b5602240">contient_mot_vide</a></div><div class="ttdeci">bool contient_mot_vide(Rationnel *rat)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00287">rationnel.c:287</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a336d18d6276995574121a90ee7acae66"><div class="ttname"><a href="rationnel_8h.html#a336d18d6276995574121a90ee7acae66">premier</a></div><div class="ttdeci">Ensemble * premier(Rationnel *rat)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00292">rationnel.c:292</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a993fee441521ae8748bfba521ca34500"><div class="ttname"><a href="rationnel_8h.html#a993fee441521ae8748bfba521ca34500">print_ligne</a></div><div class="ttdeci">void print_ligne(Rationnel **ligne, int nb_vars)</div><div class="ttdoc">Affiche une ligne d&#39;un système d&#39;équations. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00322">rationnel.c:322</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a03a8992d6098ed18a16ea29467d83c77"><div class="ttname"><a href="rationnel_8h.html#a03a8992d6098ed18a16ea29467d83c77">Arden</a></div><div class="ttdeci">Rationnel * Arden(Automate *automate)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00357">rationnel.c:357</a></div></div>
+<div class="ttc" id="struct_ensemble_html"><div class="ttname"><a href="struct_ensemble.html">Ensemble</a></div><div class="ttdef"><b>Definition:</b> <a href="ensemble_8h_source.html#l00033">ensemble.h:33</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a5b400af4d47ebab3b117832c32a3ddd8"><div class="ttname"><a href="rationnel_8h.html#a5b400af4d47ebab3b117832c32a3ddd8">systeme</a></div><div class="ttdeci">Systeme systeme(Automate *automate)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00317">rationnel.c:317</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a3a77d441ef94d0f66381eb5eb690c736"><div class="ttname"><a href="rationnel_8h.html#a3a77d441ef94d0f66381eb5eb690c736">print_rationnel</a></div><div class="ttdeci">void print_rationnel(Rationnel *rat)</div><div class="ttdoc">Affiche une expression rationnelle, avec la syntaxe habituelle. Pour plus de lisibilité, différents jeux de parenthèses sont utilisés. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00159">rationnel.c:159</a></div></div>
+<div class="ttc" id="rationnel_8h_html_ab9291b687053f3bbff5fbbe597d2aa38"><div class="ttname"><a href="rationnel_8h.html#ab9291b687053f3bbff5fbbe597d2aa38">get_position_min</a></div><div class="ttdeci">int get_position_min(Rationnel *rat)</div><div class="ttdoc">Renvoie la position minimale d&#39;une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00109">rationnel.c:109</a></div></div>
+<div class="ttc" id="struct_rationnel_html_adc2a0297409b28f688570075f235e752"><div class="ttname"><a href="struct_rationnel.html#adc2a0297409b28f688570075f235e752">Rationnel::position_max</a></div><div class="ttdeci">int position_max</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00080">rationnel.h:80</a></div></div>
+<div class="ttc" id="rationnel_8h_html_ac7140bfea99155b1978567ad1c5527dd"><div class="ttname"><a href="rationnel_8h.html#ac7140bfea99155b1978567ad1c5527dd">est_racine</a></div><div class="ttdeci">bool est_racine(Rationnel *rat)</div><div class="ttdoc">Teste si un pointeur sur un rationnel représente la racine. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00093">rationnel.c:93</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a1f175bfbd0f3b7002438a0a334e6239c"><div class="ttname"><a href="rationnel_8h.html#a1f175bfbd0f3b7002438a0a334e6239c">fils</a></div><div class="ttdeci">Rationnel * fils(Rationnel *rat)</div><div class="ttdoc">Renvoie le fils d&#39;une expression rationnelle STAR. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00147">rationnel.c:147</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a6f2680d038423662f53881cc8ff00f46"><div class="ttname"><a href="rationnel_8h.html#a6f2680d038423662f53881cc8ff00f46">dernier</a></div><div class="ttdeci">Ensemble * dernier(Rationnel *)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00297">rationnel.c:297</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a25b964848f743e0628b4bbc65e3ff02b"><div class="ttname"><a href="rationnel_8h.html#a25b964848f743e0628b4bbc65e3ff02b">get_lettre</a></div><div class="ttdeci">char get_lettre(Rationnel *rat)</div><div class="ttdoc">Renvoie la lettre portée par une expression de type LETTRE. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00103">rationnel.c:103</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a4dfadbe883b5ba11a7ef95c23edf2327"><div class="ttname"><a href="rationnel_8h.html#a4dfadbe883b5ba11a7ef95c23edf2327">Union</a></div><div class="ttdeci">Rationnel * Union(Rationnel *rat1, Rationnel *rat2)</div><div class="ttdoc">Construit l&#39;union de deux rationnels. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00061">rationnel.c:61</a></div></div>
+<div class="ttc" id="struct_rationnel_html_ab518a7e3d5bc01e70b084796bc7d57c2"><div class="ttname"><a href="struct_rationnel.html#ab518a7e3d5bc01e70b084796bc7d57c2">Rationnel::lettre</a></div><div class="ttdeci">char lettre</div><div class="ttdoc">Si l&#39;expression est un neoud LETTRE, le caractère assosié </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00061">rationnel.h:61</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522a1fa5920d8d419e0b8036e2dbada9a882"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a1fa5920d8d419e0b8036e2dbada9a882">EPSILON</a></div><div class="ttdoc">Mot vide. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00042">rationnel.h:42</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522">Noeud</a></div><div class="ttdeci">Noeud</div><div class="ttdoc">Type d&#39;expression. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00042">rationnel.h:42</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a64871ff9f787c573c53fe771e4b47522a9044fbb1b4b9307bcd680468a58c22f2"><div class="ttname"><a href="rationnel_8h.html#a64871ff9f787c573c53fe771e4b47522a9044fbb1b4b9307bcd680468a58c22f2">CONCAT</a></div><div class="ttdoc">Concaténation. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00046">rationnel.h:46</a></div></div>
+<div class="ttc" id="struct_rationnel_html_aae0c3f284ecad17be7a170e5082aeefb"><div class="ttname"><a href="struct_rationnel.html#aae0c3f284ecad17be7a170e5082aeefb">Rationnel::position_min</a></div><div class="ttdeci">int position_min</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00074">rationnel.h:74</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a2e72bbbbba0e0e374d9250b6ab183b97"><div class="ttname"><a href="rationnel_8h.html#a2e72bbbbba0e0e374d9250b6ab183b97">Rationnel</a></div><div class="ttdeci">struct Rationnel Rationnel</div><div class="ttdoc">Le type décrivant une expression rationnelle. </div></div>
+<div class="ttc" id="rationnel_8h_html_a18693a61d6c570066345534c09792dfb"><div class="ttname"><a href="rationnel_8h.html#a18693a61d6c570066345534c09792dfb">fils_gauche</a></div><div class="ttdeci">Rationnel * fils_gauche(Rationnel *rat)</div><div class="ttdoc">Renvoie le fils gauche d&#39;une expression rationnelle UNION ou CONCAT. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00135">rationnel.c:135</a></div></div>
+<div class="ttc" id="automate_8h_html"><div class="ttname"><a href="automate_8h.html">automate.h</a></div></div>
+<div class="ttc" id="struct_rationnel_html_abfcc8a6f7579a95a72893ec02d95b7f5"><div class="ttname"><a href="struct_rationnel.html#abfcc8a6f7579a95a72893ec02d95b7f5">Rationnel::droit</a></div><div class="ttdeci">struct Rationnel * droit</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8h_source.html#l00069">rationnel.h:69</a></div></div>
+<div class="ttc" id="rationnel_8h_html_aed767d7f51bd90eebfd5e7beedd184ff"><div class="ttname"><a href="rationnel_8h.html#aed767d7f51bd90eebfd5e7beedd184ff">pere</a></div><div class="ttdeci">Rationnel * pere(Rationnel *rat)</div><div class="ttdoc">Renvoie le pere d&#39;une (sous-)expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00153">rationnel.c:153</a></div></div>
+<div class="ttc" id="rationnel_8h_html_afe09ba08420dbd2054effdbf6007f356"><div class="ttname"><a href="rationnel_8h.html#afe09ba08420dbd2054effdbf6007f356">get_position_max</a></div><div class="ttdeci">int get_position_max(Rationnel *rat)</div><div class="ttdoc">Renvoie la position maximale d&#39;une expression rationnelle. </div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00115">rationnel.c:115</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a7f8a91d901ad71fa2a876f22b89640bf"><div class="ttname"><a href="rationnel_8h.html#a7f8a91d901ad71fa2a876f22b89640bf">resoudre_variable_arden</a></div><div class="ttdeci">Rationnel ** resoudre_variable_arden(Rationnel **ligne, int numero_variable, int nb_vars)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00342">rationnel.c:342</a></div></div>
+<div class="ttc" id="rationnel_8h_html_abd8cb23739996a8edec14a81a70f1eb7"><div class="ttname"><a href="rationnel_8h.html#abd8cb23739996a8edec14a81a70f1eb7">suivant</a></div><div class="ttdeci">Ensemble * suivant(Rationnel *, int)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00302">rationnel.c:302</a></div></div>
+<div class="ttc" id="rationnel_8h_html_a14da001256a091ddf5510bdc120fdd6e"><div class="ttname"><a href="rationnel_8h.html#a14da001256a091ddf5510bdc120fdd6e">meme_langage</a></div><div class="ttdeci">bool meme_langage(const char *expr1, const char *expr2)</div><div class="ttdef"><b>Definition:</b> <a href="rationnel_8c_source.html#l00312">rationnel.c:312</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

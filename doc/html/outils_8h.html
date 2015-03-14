@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Projet Informatique Théorique 2015: Référence du fichier outils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Projet Informatique Théorique 2015
+   </div>
+   <div id="projectbrief">Instructions et Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globales</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier outils.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+</div>
+<p><a href="outils_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3dfa58b1c5c2943dd49d8aa1981d377d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dfa58b1c5c2943dd49d8aa1981d377d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DEBUG</b>(x)&#160;&#160;&#160;do { fprintf(stderr,&quot;DEBUG : %s - ligne : %d, fichier : %s\n&quot;, (x), __LINE__, __FILE__ ); } while(0)</td></tr>
+<tr class="separator:a3dfa58b1c5c2943dd49d8aa1981d377d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b1932ac5f0d8bb87638e468db2da0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58b1932ac5f0d8bb87638e468db2da0d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DEBUGO</b>(x)&#160;&#160;&#160;do { fprintf(stdout,&quot;DEBUG : %s - ligne : %d, fichier : %s\n&quot;, (x), __LINE__, __FILE__ ); } while(0)</td></tr>
+<tr class="separator:a58b1932ac5f0d8bb87638e468db2da0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a5c56902f24e2a0c7f331ab261e4261"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a5c56902f24e2a0c7f331ab261e4261"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ERREUR</b>(x)&#160;&#160;&#160;do { fprintf(stderr,&quot;ERREUR : %s - ligne : %d, fichier : %s\n&quot;, (x), __LINE__, __FILE__ ); exit(EXIT_FAILURE); } while(0)</td></tr>
+<tr class="separator:a6a5c56902f24e2a0c7f331ab261e4261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9e053fe241721063078303dc6a616b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e9e053fe241721063078303dc6a616b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEST</b>(y,  x)&#160;&#160;&#160;do { x &amp;= (y); if(!(y)){ fprintf(stdout, &quot;\033[31mEchec du test %s() -- ligne : %d, fichier : %s\033[0m\n&quot;, __FUNCTION__, __LINE__, __FILE__ ); } } while(0)</td></tr>
+<tr class="separator:a8e9e053fe241721063078303dc6a616b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20f8f24ebb6e21f65e31e5db7e8c182"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac20f8f24ebb6e21f65e31e5db7e8c182"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TEST1</b>(x)&#160;&#160;&#160;test( x, __LINE__)</td></tr>
+<tr class="separator:ac20f8f24ebb6e21f65e31e5db7e8c182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd45495333b5747e353c4b42bf6ed00c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd45495333b5747e353c4b42bf6ed00c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>A_FAIRE</b>&#160;&#160;&#160;do { fprintf(stdout,&quot;A FAIRE ! - ligne : %d, fichier : %s, fonction : %s( )\n&quot;,  __LINE__, __FILE__, __FUNCTION__ ); } while(0)</td></tr>
+<tr class="separator:abd45495333b5747e353c4b42bf6ed00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a107b6e9fae080c167d17b830a2f07350"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a107b6e9fae080c167d17b830a2f07350"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>A_FAIRE_RETURN</b>(x)&#160;&#160;&#160;do { fprintf(stdout,&quot;A FAIRE ! - ligne : %d, fichier : %s, fonction : %s( )\n&quot;, __LINE__, __FILE__, __FUNCTION__ ); return x; } while(0)</td></tr>
+<tr class="separator:a107b6e9fae080c167d17b830a2f07350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a45d904cf0131976ce46045fd06edba81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45d904cf0131976ce46045fd06edba81"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>xmalloc</b> (size_t n)</td></tr>
+<tr class="separator:a45d904cf0131976ce46045fd06edba81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976e14808b9247ec952c262553f09f8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a976e14808b9247ec952c262553f09f8f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>xfree</b> (void *ptr)</td></tr>
+<tr class="separator:a976e14808b9247ec952c262553f09f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8c9f39ab7974b2e7c9289c5afa078c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c8c9f39ab7974b2e7c9289c5afa078c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>test</b> (int result, int ligne)</td></tr>
+<tr class="separator:a9c8c9f39ab7974b2e7c9289c5afa078c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

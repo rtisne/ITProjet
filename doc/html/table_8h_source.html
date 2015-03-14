@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Projet Informatique Théorique 2015:  Fichier source de table.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Projet Informatique Théorique 2015
+   </div>
+   <div id="projectbrief">Instructions et Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">table.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="table_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *   Ce fichier fait partie d&#39;un projet de programmation donné en Licence 3 </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *   à l&#39;Université de Bordeaux.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *   Copyright (C) 2014 Adrien Boussicault</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *    the Free Software Foundation, either version 2 of the License, or</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef __TABLE_H__</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define __TABLE_H__</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;avl.h&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="table_8h.html#aaa5713bb2ecdf81c430009179b806232">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_table.html">Table</a> <a class="code" href="struct_table.html">Table</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="table_8h.html#a5c6278d7df5951aa5f48522a0d279c68">   42</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structavl__traverser.html">avl_traverser</a> <a class="code" href="structavl__traverser.html">Table_iterateur</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="struct_table.html">Table</a>* <a class="code" href="table_8h.html#a552c5a1dc843f876d6dbaf74da05e063">creer_table</a>(</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">int</span> (*comparer_cle)( <span class="keyword">const</span> intptr_t cle1, <span class="keyword">const</span> intptr_t cle2),</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    intptr_t (*copier_cle)( <span class="keyword">const</span> intptr_t cle ),</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> (*supprimer_cle)(intptr_t cle)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#a88ef78c123bff3d47f64013579bdde72">liberer_table</a>( <a class="code" href="struct_table.html">Table</a>* table );</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#ac9b3ec6f4ab208a6ed1176231c7e3b63">add_table</a>( <a class="code" href="struct_table.html">Table</a>* table, <span class="keyword">const</span> intptr_t cle, <span class="keyword">const</span> intptr_t valeur );</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;intptr_t <a class="code" href="table_8h.html#a2b87338b43e9972889d02e0364b52cf4">delete_table</a>( <a class="code" href="struct_table.html">Table</a>* table, <span class="keyword">const</span> intptr_t cle );</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#a972c5e361ad057d3db95b1e1bd7f39ad">vider_table</a>( <a class="code" href="struct_table.html">Table</a>* table );</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#afcdd9232570ac86205eaa7fa0dedb858">print_table</a>(</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <a class="code" href="struct_table.html">Table</a>* table, <span class="keywordtype">void</span> (*print_cle)( <span class="keyword">const</span> intptr_t cle ), </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">void</span> (*print_valeur)( <span class="keyword">const</span> intptr_t valeur ),</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* text_de_fin</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#a3df917b1645531aa0703225badb2eb69">pour_toute_valeur_table</a>(</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_table.html">Table</a>* table,</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">void</span> (*action)(intptr_t valeur )</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="keywordtype">void</span> <a class="code" href="table_8h.html#a79d7df224d07e74585e52e90039bee6a">pour_toute_cle_valeur_table</a>(</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_table.html">Table</a>* table,</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">void</span> (* action)( <span class="keyword">const</span> intptr_t cle, intptr_t valeur, <span class="keywordtype">void</span>* data  ),</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordtype">void</span>* data</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<a class="code" href="structavl__traverser.html">Table_iterateur</a> <a class="code" href="table_8h.html#acaf43dc2cdf9618b0b683e7697fcc7c1">trouver_table</a>( <span class="keyword">const</span> <a class="code" href="struct_table.html">Table</a>* table, <span class="keyword">const</span> intptr_t cle );</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<a class="code" href="structavl__traverser.html">Table_iterateur</a> <a class="code" href="table_8h.html#a9e421aa4c8f62eeda45e7bc3736f3933">premier_iterateur_table</a>( <span class="keyword">const</span> <a class="code" href="struct_table.html">Table</a>* table );</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<a class="code" href="structavl__traverser.html">Table_iterateur</a> <a class="code" href="table_8h.html#aa1c7763f32c545fec672404d132792b7">iterateur_suivant_table</a>( <a class="code" href="structavl__traverser.html">Table_iterateur</a> iterator );</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<a class="code" href="structavl__traverser.html">Table_iterateur</a> <a class="code" href="table_8h.html#a9603ef84d6e9a24098b62e77b42b95fe">iterateur_precedent_table</a>( <a class="code" href="structavl__traverser.html">Table_iterateur</a> iterator );</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keywordtype">int</span> <a class="code" href="table_8h.html#aee072a7c020addb0bc7ab9d853cc7ba6">iterateur_est_vide</a>( <a class="code" href="structavl__traverser.html">Table_iterateur</a> iterator );</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;intptr_t <a class="code" href="table_8h.html#a5f28753b8622c30af050bb9da5b804fd">get_cle</a>( <a class="code" href="structavl__traverser.html">Table_iterateur</a> it );</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;intptr_t <a class="code" href="table_8h.html#a7eb03479e969e37adbf216248ded15d7">get_valeur</a>( <a class="code" href="structavl__traverser.html">Table_iterateur</a> it );</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="keywordtype">int</span> <a class="code" href="table_8h.html#af421529230da9bb2fb415e75568afba8">taille_table</a>( <a class="code" href="struct_table.html">Table</a>* t );</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="table_8h_html_a972c5e361ad057d3db95b1e1bd7f39ad"><div class="ttname"><a href="table_8h.html#a972c5e361ad057d3db95b1e1bd7f39ad">vider_table</a></div><div class="ttdeci">void vider_table(Table *table)</div><div class="ttdoc">Supprime toutes les clés de la table. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00201">table.c:201</a></div></div>
+<div class="ttc" id="table_8h_html_a9e421aa4c8f62eeda45e7bc3736f3933"><div class="ttname"><a href="table_8h.html#a9e421aa4c8f62eeda45e7bc3736f3933">premier_iterateur_table</a></div><div class="ttdeci">Table_iterateur premier_iterateur_table(const Table *table)</div><div class="ttdoc">Renvoie un itérateur positionné sur la première association de la table. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00251">table.c:251</a></div></div>
+<div class="ttc" id="table_8h_html_a5f28753b8622c30af050bb9da5b804fd"><div class="ttname"><a href="table_8h.html#a5f28753b8622c30af050bb9da5b804fd">get_cle</a></div><div class="ttdeci">intptr_t get_cle(Table_iterateur it)</div><div class="ttdoc">Renvoie la clé de l&#39;association pointée par l&#39;itérateur passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00047">table.c:47</a></div></div>
+<div class="ttc" id="table_8h_html_af421529230da9bb2fb415e75568afba8"><div class="ttname"><a href="table_8h.html#af421529230da9bb2fb415e75568afba8">taille_table</a></div><div class="ttdeci">int taille_table(Table *t)</div><div class="ttdoc">Renvoie la taille de la table. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00279">table.c:279</a></div></div>
+<div class="ttc" id="table_8h_html_a79d7df224d07e74585e52e90039bee6a"><div class="ttname"><a href="table_8h.html#a79d7df224d07e74585e52e90039bee6a">pour_toute_cle_valeur_table</a></div><div class="ttdeci">void pour_toute_cle_valeur_table(const Table *table, void(*action)(const intptr_t cle, intptr_t valeur, void *data), void *data)</div><div class="ttdoc">La fonction passe en revue toutes les associaitons (clé, valeur) de la table, et apelle la fonction p...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00169">table.c:169</a></div></div>
+<div class="ttc" id="table_8h_html_a88ef78c123bff3d47f64013579bdde72"><div class="ttname"><a href="table_8h.html#a88ef78c123bff3d47f64013579bdde72">liberer_table</a></div><div class="ttdeci">void liberer_table(Table *table)</div><div class="ttdoc">Cette fonction détruit une table. La mémoire qui a été allouée par la table pour stocker les clés son...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00131">table.c:131</a></div></div>
+<div class="ttc" id="table_8h_html_a2b87338b43e9972889d02e0364b52cf4"><div class="ttname"><a href="table_8h.html#a2b87338b43e9972889d02e0364b52cf4">delete_table</a></div><div class="ttdeci">intptr_t delete_table(Table *table, const intptr_t cle)</div><div class="ttdoc">Supprime une clé de la table. La mémoire de la clé est libérée et la valeur associée à la clé est per...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00150">table.c:150</a></div></div>
+<div class="ttc" id="table_8h_html_aa1c7763f32c545fec672404d132792b7"><div class="ttname"><a href="table_8h.html#aa1c7763f32c545fec672404d132792b7">iterateur_suivant_table</a></div><div class="ttdeci">Table_iterateur iterateur_suivant_table(Table_iterateur iterator)</div><div class="ttdoc">Renvoie l&#39;itérateur suivant. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00269">table.c:269</a></div></div>
+<div class="ttc" id="table_8h_html_a7eb03479e969e37adbf216248ded15d7"><div class="ttname"><a href="table_8h.html#a7eb03479e969e37adbf216248ded15d7">get_valeur</a></div><div class="ttdeci">intptr_t get_valeur(Table_iterateur it)</div><div class="ttdoc">Renvoie la valeur de l&#39;association pointée par l&#39;itérateur passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00052">table.c:52</a></div></div>
+<div class="ttc" id="table_8h_html_a3df917b1645531aa0703225badb2eb69"><div class="ttname"><a href="table_8h.html#a3df917b1645531aa0703225badb2eb69">pour_toute_valeur_table</a></div><div class="ttdeci">void pour_toute_valeur_table(const Table *table, void(*action)(intptr_t valeur))</div><div class="ttdoc">La fonction passe en revue toutes les valeurs de la table passée en paramètre et apelle la fonction p...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00192">table.c:192</a></div></div>
+<div class="ttc" id="table_8h_html_afcdd9232570ac86205eaa7fa0dedb858"><div class="ttname"><a href="table_8h.html#afcdd9232570ac86205eaa7fa0dedb858">print_table</a></div><div class="ttdeci">void print_table(Table *table, void(*print_cle)(const intptr_t cle), void(*print_valeur)(const intptr_t valeur), const char *text_de_fin)</div><div class="ttdoc">Affiche la table. Vous devez donner en paramètres de print_table, des fonctions pour afficher les clé...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00227">table.c:227</a></div></div>
+<div class="ttc" id="table_8h_html_a9603ef84d6e9a24098b62e77b42b95fe"><div class="ttname"><a href="table_8h.html#a9603ef84d6e9a24098b62e77b42b95fe">iterateur_precedent_table</a></div><div class="ttdeci">Table_iterateur iterateur_precedent_table(Table_iterateur iterator)</div><div class="ttdoc">Renvoie l&#39;itérateur précédent. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00274">table.c:274</a></div></div>
+<div class="ttc" id="table_8h_html_aee072a7c020addb0bc7ab9d853cc7ba6"><div class="ttname"><a href="table_8h.html#aee072a7c020addb0bc7ab9d853cc7ba6">iterateur_est_vide</a></div><div class="ttdeci">int iterateur_est_vide(Table_iterateur iterator)</div><div class="ttdoc">Renvoie 1 si l&#39;itérateur passé en paramètre est vide. Renvoie 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00265">table.c:265</a></div></div>
+<div class="ttc" id="table_8h_html_acaf43dc2cdf9618b0b683e7697fcc7c1"><div class="ttname"><a href="table_8h.html#acaf43dc2cdf9618b0b683e7697fcc7c1">trouver_table</a></div><div class="ttdeci">Table_iterateur trouver_table(const Table *table, const intptr_t cle)</div><div class="ttdoc">Renvoie un itérateur positionné sur l&#39;association dont la clé est identique (pour la fonction de comp...</div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00241">table.c:241</a></div></div>
+<div class="ttc" id="structavl__traverser_html"><div class="ttname"><a href="structavl__traverser.html">avl_traverser</a></div><div class="ttdef"><b>Definition:</b> <a href="avl_8h_source.html#l00075">avl.h:75</a></div></div>
+<div class="ttc" id="struct_table_html"><div class="ttname"><a href="struct_table.html">Table</a></div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00039">table.c:39</a></div></div>
+<div class="ttc" id="table_8h_html_a552c5a1dc843f876d6dbaf74da05e063"><div class="ttname"><a href="table_8h.html#a552c5a1dc843f876d6dbaf74da05e063">creer_table</a></div><div class="ttdeci">Table * creer_table(int(*comparer_cle)(const intptr_t cle1, const intptr_t cle2), intptr_t(*copier_cle)(const intptr_t cle), void(*supprimer_cle)(intptr_t cle))</div><div class="ttdoc">Renvoie une nouvelle table. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00117">table.c:117</a></div></div>
+<div class="ttc" id="table_8h_html_ac9b3ec6f4ab208a6ed1176231c7e3b63"><div class="ttname"><a href="table_8h.html#ac9b3ec6f4ab208a6ed1176231c7e3b63">add_table</a></div><div class="ttdeci">void add_table(Table *table, const intptr_t cle, const intptr_t valeur)</div><div class="ttdoc">La fonction add_table() ajoute une association entre une clé et une valeur. Pour cela, add_table(), crée une copie de la clé passée en paramètre, l&#39;enregistre dans la table et l&#39;associe à la valeur passée en paramètre. La mémoire de la copie de la clé est gérée par la table. La mémoire de la clé passée en paramètre reste à la charge de l&#39;utilisateur. </div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00137">table.c:137</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Projet Informatique Théorique 2015:  Fichier source de automate.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Projet Informatique Théorique 2015
+   </div>
+   <div id="projectbrief">Instructions et Documentation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">automate.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="automate_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *   Ce fichier fait partie d&#39;un projet de programmation donné en Licence 3 </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *   à l&#39;Université de Bordeaux</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *   Copyright (C) 2014, 2015 Adrien Boussicault</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *    the Free Software Foundation, either version 2 of the License, or</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef __AUTOMATE_H__</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define __AUTOMATE_H__</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;ensemble.h&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="struct_automate.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_automate.html">Automate</a> {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;   <a class="code" href="struct_ensemble.html">Ensemble</a> * vide; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="struct_ensemble.html">Ensemble</a> * etats;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="struct_ensemble.html">Ensemble</a> * alphabet;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="struct_table.html">Table</a>* transitions;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="struct_ensemble.html">Ensemble</a> * initiaux;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="struct_ensemble.html">Ensemble</a> * finaux;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_automate.html">Automate</a> <a class="code" href="struct_automate.html">Automate</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_cle.html">   50</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_cle.html">Cle</a> {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> origine;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> lettre;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <a class="code" href="struct_cle.html">Cle</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="struct_automate.html">Automate</a> * <a class="code" href="automate_8h.html#a391be5bae7c2bb67913c1dbb0a87626d">creer_automate</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#ad41c8b0d3b666dd39d67757b05f6aced">liberer_automate</a>( <a class="code" href="struct_automate.html">Automate</a> * automate);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#abaa7fd59101f12f1d927f20ec951ac29">ajouter_etat</a>( <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">int</span> etat );</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#ad6d1367b564b51cb181a530809f54c1d">ajouter_lettre</a>( <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">char</span> lettre );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#a0386b8a332b002887736541f484512bb">ajouter_transition</a>(</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">int</span> origine, <span class="keywordtype">char</span> lettre, <span class="keywordtype">int</span> fin</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#a93af39a517c532b2404298ece9eefa2b">ajouter_etat_final</a>(</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">int</span> etat_final</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#a803fefd8cebed5eb11d10013816464c8">ajouter_etat_initial</a>(</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">int</span> etat_initial</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#a475c373e6a7d11a34671ace09f39bfd7">get_etats</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#ac56691da793d80f550f1a949ed9a003e">get_initiaux</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#a8ddeb9c8f9978955a3f8ba1669e67ee4">get_finaux</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#a95735269e7c4dc6b44d2e2e3ebf75cbe">get_alphabet</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a2203596cb1456cd78e0b5a3ccbdd875a">est_une_transition_de_l_automate</a>(</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate,</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordtype">int</span> origine, <span class="keywordtype">char</span> lettre, <span class="keywordtype">int</span> fin</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a978173c16ada37d951f3858b3dfda52e">est_un_etat_de_l_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keywordtype">int</span> etat );</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a52e6967e32741d3ceef2687096bff542">est_un_etat_initial_de_l_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keywordtype">int</span> etat );</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a48ecf8d873ef2aa9d861eeffd10c8af9">est_un_etat_final_de_l_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keywordtype">int</span> etat );</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a7df68b721bd245c0c4151c1d627def28">est_une_lettre_de_l_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keywordtype">char</span> lettre );</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#a1b836baf752a1635fe6700e61fc05a3d">delta</a>(</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * etats_courants, <span class="keywordtype">char</span> lettre</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a> * <a class="code" href="automate_8h.html#a0077342dc9cb58574587705a20028f3a">delta_star</a>(</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keyword">const</span> <a class="code" href="struct_ensemble.html">Ensemble</a> * etats_courants, <span class="keyword">const</span> <span class="keywordtype">char</span>* mot</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#ace744acdd80f15caf007df26aa8cd21c">le_mot_est_reconnu</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate, <span class="keyword">const</span> <span class="keywordtype">char</span>* mot );</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#a8be2c289a8f2075d1bf8090dee1afcf0">pour_toute_transition</a>(</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate,</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordtype">void</span> (* action )( <span class="keywordtype">int</span> origine, <span class="keywordtype">char</span> lettre, <span class="keywordtype">int</span> fin, <span class="keywordtype">void</span>* data ),</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keywordtype">void</span>* data</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a6cbbccefa35364b2de288b5fc342edcf">get_max_etat</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#aa713cba27a3133b4c935dcb16f60f4f2">get_min_etat</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<a class="code" href="struct_automate.html">Automate</a>* <a class="code" href="automate_8h.html#aed521b3c481706065224342e78252280">copier_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a>* <a class="code" href="automate_8h.html#aefae3ddc15b6068aabd8ce968f8a6d94">etats_accessibles</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate, <span class="keywordtype">int</span> etat );</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<a class="code" href="struct_ensemble.html">Ensemble</a>* <a class="code" href="automate_8h.html#ab8028b4989727d78c373b13b37123b29">accessibles</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate );</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<a class="code" href="struct_automate.html">Automate</a> *<a class="code" href="automate_8h.html#a844d0c6ebd02a7f5479c0daa5d8da006">automate_accessible</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate );</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<a class="code" href="struct_automate.html">Automate</a> *<a class="code" href="automate_8h.html#a0db214e8b395378ffff38434c9ab1132">miroir</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="keywordtype">void</span> <a class="code" href="automate_8h.html#a1ae8376cc3780e9b3f7799205b50b681">print_automate</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate );</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<a class="code" href="struct_automate.html">Automate</a> * <a class="code" href="automate_8h.html#ae8c52612d01d5943cd41be619e6fc64a">creer_intersection_des_automates</a>(</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate_1, <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a> * automate_2</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<a class="code" href="struct_automate.html">Automate</a> * <a class="code" href="automate_8h.html#a8769d1d8c8c4c1986685436842a2172d">creer_automate_deterministe</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<a class="code" href="struct_automate.html">Automate</a> * <a class="code" href="automate_8h.html#ab27b0d2c8396b870093d998e9d8a2522">creer_automate_minimal</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="keywordtype">int</span> <a class="code" href="automate_8h.html#a45c5654425464cc20d204932fb01cf01">nombre_de_transitions</a>( <span class="keyword">const</span> <a class="code" href="struct_automate.html">Automate</a>* automate );</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="automate_8h_html_aefae3ddc15b6068aabd8ce968f8a6d94"><div class="ttname"><a href="automate_8h.html#aefae3ddc15b6068aabd8ce968f8a6d94">etats_accessibles</a></div><div class="ttdeci">Ensemble * etats_accessibles(const Automate *automate, int etat)</div><div class="ttdoc">Renvoie l&#39;ensemble des états accessibles à partir d&#39;un état en lisant un mot quelcquonque. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00523">automate.c:523</a></div></div>
+<div class="ttc" id="struct_automate_html"><div class="ttname"><a href="struct_automate.html">Automate</a></div><div class="ttdoc">Le type d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8h_source.html#l00039">automate.h:39</a></div></div>
+<div class="ttc" id="automate_8h_html_ad41c8b0d3b666dd39d67757b05f6aced"><div class="ttname"><a href="automate_8h.html#ad41c8b0d3b666dd39d67757b05f6aced">liberer_automate</a></div><div class="ttdeci">void liberer_automate(Automate *automate)</div><div class="ttdoc">Détruit un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00114">automate.c:114</a></div></div>
+<div class="ttc" id="automate_8h_html_a0db214e8b395378ffff38434c9ab1132"><div class="ttname"><a href="automate_8h.html#a0db214e8b395378ffff38434c9ab1132">miroir</a></div><div class="ttdeci">Automate * miroir(const Automate *automate)</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00642">automate.c:642</a></div></div>
+<div class="ttc" id="automate_8h_html_a2203596cb1456cd78e0b5a3ccbdd875a"><div class="ttname"><a href="automate_8h.html#a2203596cb1456cd78e0b5a3ccbdd875a">est_une_transition_de_l_automate</a></div><div class="ttdeci">int est_une_transition_de_l_automate(const Automate *automate, int origine, char lettre, int fin)</div><div class="ttdoc">Renvoie 1 si (&#39;origine&#39;, &#39;lettre&#39;, &#39;fin&#39;) est une transition de l&#39;automate et 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00667">automate.c:667</a></div></div>
+<div class="ttc" id="automate_8h_html_a0077342dc9cb58574587705a20028f3a"><div class="ttname"><a href="automate_8h.html#a0077342dc9cb58574587705a20028f3a">delta_star</a></div><div class="ttdeci">Ensemble * delta_star(const Automate *automate, const Ensemble *etats_courants, const char *mot)</div><div class="ttdoc">Renvoie l&#39;ensemble des états accessibles à partir d&#39;un ensemble d&#39;états donné en paramètre et en lisa...</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00217">automate.c:217</a></div></div>
+<div class="ttc" id="automate_8h_html_a1b836baf752a1635fe6700e61fc05a3d"><div class="ttname"><a href="automate_8h.html#a1b836baf752a1635fe6700e61fc05a3d">delta</a></div><div class="ttdeci">Ensemble * delta(const Automate *automate, const Ensemble *etats_courants, char lettre)</div><div class="ttdoc">Renvoie l&#39;ensemble des états accéssibles à partir d&#39;un ensemble d&#39;états donné en paramètre et en lisa...</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00197">automate.c:197</a></div></div>
+<div class="ttc" id="automate_8h_html_a52e6967e32741d3ceef2687096bff542"><div class="ttname"><a href="automate_8h.html#a52e6967e32741d3ceef2687096bff542">est_un_etat_initial_de_l_automate</a></div><div class="ttdeci">int est_un_etat_initial_de_l_automate(const Automate *automate, int etat)</div><div class="ttdoc">Renvoie 1 si (&#39;etat&#39;) est un état initial de l&#39;automate et 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00678">automate.c:678</a></div></div>
+<div class="ttc" id="automate_8h_html_a7df68b721bd245c0c4151c1d627def28"><div class="ttname"><a href="automate_8h.html#a7df68b721bd245c0c4151c1d627def28">est_une_lettre_de_l_automate</a></div><div class="ttdeci">int est_une_lettre_de_l_automate(const Automate *automate, char lettre)</div><div class="ttdoc">Renvoie 1 si (&#39;etat&#39;) est une lettre de l&#39;automate et 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00686">automate.c:686</a></div></div>
+<div class="ttc" id="automate_8h_html_a978173c16ada37d951f3858b3dfda52e"><div class="ttname"><a href="automate_8h.html#a978173c16ada37d951f3858b3dfda52e">est_un_etat_de_l_automate</a></div><div class="ttdeci">int est_un_etat_de_l_automate(const Automate *automate, int etat)</div><div class="ttdoc">Renvoie 1 si (&#39;etat&#39;) est un état de l&#39;automate et 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00674">automate.c:674</a></div></div>
+<div class="ttc" id="automate_8h_html_a8769d1d8c8c4c1986685436842a2172d"><div class="ttname"><a href="automate_8h.html#a8769d1d8c8c4c1986685436842a2172d">creer_automate_deterministe</a></div><div class="ttdeci">Automate * creer_automate_deterministe(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;automate déterministe. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00755">automate.c:755</a></div></div>
+<div class="ttc" id="automate_8h_html_ace744acdd80f15caf007df26aa8cd21c"><div class="ttname"><a href="automate_8h.html#ace744acdd80f15caf007df26aa8cd21c">le_mot_est_reconnu</a></div><div class="ttdeci">int le_mot_est_reconnu(const Automate *automate, const char *mot)</div><div class="ttdoc">Renvoie vrai si le mot passé en paramètre est reconu par l&#39;automate passé en paramètre, et renvoie 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00717">automate.c:717</a></div></div>
+<div class="ttc" id="automate_8h_html_abaa7fd59101f12f1d927f20ec951ac29"><div class="ttname"><a href="automate_8h.html#abaa7fd59101f12f1d927f20ec951ac29">ajouter_etat</a></div><div class="ttdeci">void ajouter_etat(Automate *automate, int etat)</div><div class="ttdoc">Ajoute un état à un automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00144">automate.c:144</a></div></div>
+<div class="ttc" id="automate_8h_html_a0386b8a332b002887736541f484512bb"><div class="ttname"><a href="automate_8h.html#a0386b8a332b002887736541f484512bb">ajouter_transition</a></div><div class="ttdeci">void ajouter_transition(Automate *automate, int origine, char lettre, int fin)</div><div class="ttdoc">Ajoute une transition à l&#39;automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00152">automate.c:152</a></div></div>
+<div class="ttc" id="automate_8h_html_a48ecf8d873ef2aa9d861eeffd10c8af9"><div class="ttname"><a href="automate_8h.html#a48ecf8d873ef2aa9d861eeffd10c8af9">est_un_etat_final_de_l_automate</a></div><div class="ttdeci">int est_un_etat_final_de_l_automate(const Automate *automate, int etat)</div><div class="ttdoc">Renvoie 1 si (&#39;etat&#39;) est un état final initial de l&#39;automate et 0 sinon. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00682">automate.c:682</a></div></div>
+<div class="ttc" id="struct_ensemble_html"><div class="ttname"><a href="struct_ensemble.html">Ensemble</a></div><div class="ttdef"><b>Definition:</b> <a href="ensemble_8h_source.html#l00033">ensemble.h:33</a></div></div>
+<div class="ttc" id="automate_8h_html_a391be5bae7c2bb67913c1dbb0a87626d"><div class="ttname"><a href="automate_8h.html#a391be5bae7c2bb67913c1dbb0a87626d">creer_automate</a></div><div class="ttdeci">Automate * creer_automate()</div><div class="ttdoc">Crée un automate vide, sans états, sans lettres et sans transitions. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00099">automate.c:99</a></div></div>
+<div class="ttc" id="automate_8h_html_a6cbbccefa35364b2de288b5fc342edcf"><div class="ttname"><a href="automate_8h.html#a6cbbccefa35364b2de288b5fc342edcf">get_max_etat</a></div><div class="ttdeci">int get_max_etat(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;état ayant le numéro le plus grand de l&#39;automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00042">automate.c:42</a></div></div>
+<div class="ttc" id="automate_8h_html_ab8028b4989727d78c373b13b37123b29"><div class="ttname"><a href="automate_8h.html#ab8028b4989727d78c373b13b37123b29">accessibles</a></div><div class="ttdeci">Ensemble * accessibles(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;ensemble des états accessibles à partir des états initiaux en lisant un mot quelconque...</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00560">automate.c:560</a></div></div>
+<div class="ttc" id="automate_8h_html_ae8c52612d01d5943cd41be619e6fc64a"><div class="ttname"><a href="automate_8h.html#ae8c52612d01d5943cd41be619e6fc64a">creer_intersection_des_automates</a></div><div class="ttdeci">Automate * creer_intersection_des_automates(const Automate *automate_1, const Automate *automate_2)</div><div class="ttdoc">Crée l&#39;intersection de deux automates. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00376">automate.c:376</a></div></div>
+<div class="ttc" id="automate_8h_html_a8ddeb9c8f9978955a3f8ba1669e67ee4"><div class="ttname"><a href="automate_8h.html#a8ddeb9c8f9978955a3f8ba1669e67ee4">get_finaux</a></div><div class="ttdeci">const Ensemble * get_finaux(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;ensemble des états finaux d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00136">automate.c:136</a></div></div>
+<div class="ttc" id="automate_8h_html_a8be2c289a8f2075d1bf8090dee1afcf0"><div class="ttname"><a href="automate_8h.html#a8be2c289a8f2075d1bf8090dee1afcf0">pour_toute_transition</a></div><div class="ttdeci">void pour_toute_transition(const Automate *automate, void(*action)(int origine, char lettre, int fin, void *data), void *data)</div><div class="ttdoc">La fonction passe en revue toutes les transitions de l&#39;automate et appelle la fonction passée en para...</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00232">automate.c:232</a></div></div>
+<div class="ttc" id="automate_8h_html_ac56691da793d80f550f1a949ed9a003e"><div class="ttname"><a href="automate_8h.html#ac56691da793d80f550f1a949ed9a003e">get_initiaux</a></div><div class="ttdeci">const Ensemble * get_initiaux(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;ensemble des états intiaux d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00132">automate.c:132</a></div></div>
+<div class="ttc" id="automate_8h_html_a1ae8376cc3780e9b3f7799205b50b681"><div class="ttname"><a href="automate_8h.html#a1ae8376cc3780e9b3f7799205b50b681">print_automate</a></div><div class="ttdeci">void print_automate(const Automate *automate)</div><div class="ttdoc">Affiche sur l&#39;entrée standard (stdout) l&#39;automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00698">automate.c:698</a></div></div>
+<div class="ttc" id="automate_8h_html_ad6d1367b564b51cb181a530809f54c1d"><div class="ttname"><a href="automate_8h.html#ad6d1367b564b51cb181a530809f54c1d">ajouter_lettre</a></div><div class="ttdeci">void ajouter_lettre(Automate *automate, char lettre)</div><div class="ttdoc">Ajoute une lettre à l&#39;alphabet d&#39;un automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00148">automate.c:148</a></div></div>
+<div class="ttc" id="automate_8h_html_a45c5654425464cc20d204932fb01cf01"><div class="ttname"><a href="automate_8h.html#a45c5654425464cc20d204932fb01cf01">nombre_de_transitions</a></div><div class="ttdeci">int nombre_de_transitions(const Automate *automate)</div><div class="ttdoc">Renvoie le nombre de transitions d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00653">automate.c:653</a></div></div>
+<div class="ttc" id="automate_8h_html_a475c373e6a7d11a34671ace09f39bfd7"><div class="ttname"><a href="automate_8h.html#a475c373e6a7d11a34671ace09f39bfd7">get_etats</a></div><div class="ttdeci">const Ensemble * get_etats(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;ensemble des états d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00128">automate.c:128</a></div></div>
+<div class="ttc" id="automate_8h_html_a844d0c6ebd02a7f5479c0daa5d8da006"><div class="ttname"><a href="automate_8h.html#a844d0c6ebd02a7f5479c0daa5d8da006">automate_accessible</a></div><div class="ttdeci">Automate * automate_accessible(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;automate passé en paramètre dont les états non accessibles ont été supprimés. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00575">automate.c:575</a></div></div>
+<div class="ttc" id="automate_8h_html_ab27b0d2c8396b870093d998e9d8a2522"><div class="ttname"><a href="automate_8h.html#ab27b0d2c8396b870093d998e9d8a2522">creer_automate_minimal</a></div><div class="ttdeci">Automate * creer_automate_minimal(const Automate *automate)</div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00825">automate.c:825</a></div></div>
+<div class="ttc" id="struct_table_html"><div class="ttname"><a href="struct_table.html">Table</a></div><div class="ttdef"><b>Definition:</b> <a href="table_8c_source.html#l00039">table.c:39</a></div></div>
+<div class="ttc" id="automate_8h_html_a93af39a517c532b2404298ece9eefa2b"><div class="ttname"><a href="automate_8h.html#a93af39a517c532b2404298ece9eefa2b">ajouter_etat_final</a></div><div class="ttdeci">void ajouter_etat_final(Automate *automate, int etat_final)</div><div class="ttdoc">Ajoute un état final à un automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00172">automate.c:172</a></div></div>
+<div class="ttc" id="automate_8h_html_a803fefd8cebed5eb11d10013816464c8"><div class="ttname"><a href="automate_8h.html#a803fefd8cebed5eb11d10013816464c8">ajouter_etat_initial</a></div><div class="ttdeci">void ajouter_etat_initial(Automate *automate, int etat_initial)</div><div class="ttdoc">Ajoute un état initial à un automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00179">automate.c:179</a></div></div>
+<div class="ttc" id="automate_8h_html_a95735269e7c4dc6b44d2e2e3ebf75cbe"><div class="ttname"><a href="automate_8h.html#a95735269e7c4dc6b44d2e2e3ebf75cbe">get_alphabet</a></div><div class="ttdeci">const Ensemble * get_alphabet(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;alphabet d&#39;un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00140">automate.c:140</a></div></div>
+<div class="ttc" id="automate_8h_html_aa713cba27a3133b4c935dcb16f60f4f2"><div class="ttname"><a href="automate_8h.html#aa713cba27a3133b4c935dcb16f60f4f2">get_min_etat</a></div><div class="ttdeci">int get_min_etat(const Automate *automate)</div><div class="ttdoc">Renvoie l&#39;état ayant le numéro le plus petit de l&#39;automate passé en paramètre. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00055">automate.c:55</a></div></div>
+<div class="ttc" id="automate_8h_html_aed521b3c481706065224342e78252280"><div class="ttname"><a href="automate_8h.html#aed521b3c481706065224342e78252280">copier_automate</a></div><div class="ttdeci">Automate * copier_automate(const Automate *automate)</div><div class="ttdoc">Copie un automate. </div><div class="ttdef"><b>Definition:</b> <a href="automate_8c_source.html#l00257">automate.c:257</a></div></div>
+<div class="ttc" id="struct_cle_html"><div class="ttname"><a href="struct_cle.html">Cle</a></div><div class="ttdef"><b>Definition:</b> <a href="automate_8h_source.html#l00050">automate.h:50</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>
