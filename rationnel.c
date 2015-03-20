@@ -285,7 +285,7 @@ Rationnel *miroir_expression_rationnelle(Rationnel *rat)
       return NULL;
 
    Rationnel *f1, *f2;
-   switch(get_etiquette){
+   switch(get_etiquette(rat)){
       case EPSILON:
          return Epsilon();
          break;
@@ -324,8 +324,35 @@ bool contient_mot_vide(Rationnel *rat)
 
 Ensemble *premier(Rationnel *rat)
 {
-   A_FAIRE_RETURN(NULL);
+   if(!rat)
+      return NULL;
+
+   Ensemble e = creer_ensemble(NULL,NULL,NULL);
+   switch(get_etiquette(rat)){
+      case EPSILON:
+         e = ajouter_element(e, Epsilon());
+         break;
+      case LETTRE:
+         e = ajouter_element(e, Lettre(get_lettre(rat)));
+         break;
+      case UNION:
+         e = creer_union_ensemble(e, fils_gauche(rat));
+         e = creer_union_ensemble(e, fils_droit(rat));
+         break;
+      case CONCAT:
+         e = creer_union_ensemble(e, fils_gauche(rat));
+         break;
+      case STAR:
+         e = creer_union_ensemble(e, fils(rat))
+         break;
+      default:
+         assert(false);
+         break;
+   }
+   return e;
 }
+
+
 
 Ensemble *dernier(Rationnel *rat)
 {

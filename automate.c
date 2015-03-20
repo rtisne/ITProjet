@@ -640,7 +640,7 @@ Automate *automate_accessible( const Automate * automate ){
 }
 
 Automate *miroir( const Automate * automate){
-	Automate * automateMiroir = creer_automate();
+
 
    	A_FAIRE_RETURN(NULL);
    //inverser le sens des fleches de l'automate
@@ -828,18 +828,18 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 }
 
 Automate * creer_automate_minimal( const Automate* automate ){
-   A_FAIRE_RETURN(NULL);
    	//Brzozowski  
    	//Faire l'automate miroir
-    automate = miroir(automate);
+   	Automate *automateM = copier_automate(automate);
+    automateM = miroir(automateM);
 	//determiniser
-	automate = creer_automate_deterministe(automate);
+	automateM = creer_automate_deterministe(automateM);
    	//Remiroir
-   	automate = miroir(automate);
+   	automateM = miroir(automateM);
    	//redeterminiser
-   	automate = creer_automate_deterministe(automate);
+   	automateM = creer_automate_deterministe(automateM);
 
-   	return automate;
+   	return automateM;
    
 }
 
