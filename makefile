@@ -28,7 +28,7 @@ checkmemory: test
 	done
 
 test:
-	echo "$(TESTS)" |sed -e "s#\([^ ]*\) *#\1: \1.o libautomate.a\n#g" > tests.mk
+	echo "$(TESTS)" |gsed -e "s#\([^ ]*\) *#\1: \1.o libautomate.a\n#g" > tests.mk
 	make test_2
 test_2: $(TESTS)
 
