@@ -327,23 +327,23 @@ Ensemble *premier(Rationnel *rat)
    if(!rat)
       return NULL;
 
-   Ensemble e = creer_ensemble(NULL,NULL,NULL);
+   Ensemble * e = creer_ensemble(NULL,NULL,NULL);
    switch(get_etiquette(rat)){
       case EPSILON:
-         e = ajouter_element(e, Epsilon());
+         //~ ajouter_element(e, Epsilon());
          break;
       case LETTRE:
-         e = ajouter_element(e, Lettre(get_lettre(rat)));
+         //~ ajouter_element(e, Lettre(get_lettre(rat)));
          break;
       case UNION:
-         e = creer_union_ensemble(e, fils_gauche(rat));
-         e = creer_union_ensemble(e, fils_droit(rat));
+         //~ e = creer_union_ensemble(e, fils_gauche(rat));
+         //~ e = creer_union_ensemble(e, fils_droit(rat));
          break;
       case CONCAT:
-         e = creer_union_ensemble(e, fils_gauche(rat));
+         //~ e = creer_union_ensemble(e, fils_gauche(rat));
          break;
       case STAR:
-         e = creer_union_ensemble(e, fils(rat))
+         //~ e = creer_union_ensemble(e, fils(rat))
          break;
       default:
          assert(false);

@@ -3,9 +3,7 @@ TESTS=$(TESTS_SOURCES:.c=)
 
 CPPFLAGS=-g -ggdb -O0 -std=c11 -Wall -Werror -I.
 CFLAGS=-fPIC -ggdb -I. 
-LDFLAGS= -lm
-
-PATH := /opt/local/bin:$(PATH)
+LDLIBS= -lm
 
 all: libautomate.a
 
@@ -28,7 +26,7 @@ checkmemory: test
 	done
 
 test:
-	echo "$(TESTS)" |gsed -e "s#\([^ ]*\) *#\1: \1.o libautomate.a\n#g" > tests.mk
+	echo "$(TESTS)" |sed -e "s#\([^ ]*\) *#\1: \1.o libautomate.a\n#g" > tests.mk
 	make test_2
 test_2: $(TESTS)
 
@@ -41,10 +39,10 @@ scan.h: scan.l
 	flex scan.l
 
 parse.c: parse.y scan.h
-	/opt/local/bin/bison parse.y
+	bison parse.y
 
 parse.h: parse.y
-	/opt/local/bin/bison parse.y
+	bison parse.y
 
 libautomate.a: libautomate.a(automate.o table.o ensemble.o avl.o fifo.o outils.o scan.o parse.o rationnel.o)
 
