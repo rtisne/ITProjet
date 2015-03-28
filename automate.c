@@ -642,10 +642,74 @@ Automate *automate_accessible( const Automate * automate ){
 Automate *miroir( const Automate * automate){
 
 
-   	A_FAIRE_RETURN(NULL);
-   //inverser le sens des fleches de l'automate
-   //les états finaux deviennent initiaux
-   //les états initiaux deviennent finaux
+   Ensemble_iterateur it1;
+
+	Automate * automate_miroir = creer_automate();
+
+	// On ajoute les états de "automate" dans les états de "automate_miroir"
+	for(
+		it1 = premier_iterateur_ensemble( get_etats(automate) );
+		! iterateur_ensemble_est_vide( it1 );
+		it1 = iterateur_suivant_ensemble( it1 )
+		){
+		ajouter_etat( automate_miroir, get_element( it1 ) );
+}
+
+   // On remplace les états finaux de "automate" dans les états initiaux de "automate_miroir"
+for(
+	it1 = premier_iterateur_ensemble( get_finaux( automate ) );
+	! iterateur_ensemble_est_vide( it1 );
+	it1 = iterateur_suivant_ensemble( it1 )
+	){
+	ajouter_etat_initial( automate_miroir, get_element( it1 ) );
+}
+
+   // On remplace les états initiaux de "automate" dans les états finaux de "automate_miroir"
+for(
+	it1 = premier_iterateur_ensemble( get_initiaux( automate ) );
+	! iterateur_ensemble_est_vide( it1 );
+	it1 = iterateur_suivant_ensemble( it1 )
+	){
+	ajouter_etat_final( automate_miroir, get_element( it1 ) );
+}
+
+	// On ajoute l'alphabet de "automate" dans l'alphabet de "automate_miroir"
+for(
+	it1 = premier_iterateur_ensemble( get_alphabet( automate ) );
+	! iterateur_ensemble_est_vide( it1 );
+	it1 = iterateur_suivant_ensemble( it1 )
+	){
+	ajouter_lettre( automate_miroir, (char) get_element( it1 ) );
+}
+
+
+
+automate_miroir->vide = creer_ensemble(NULL,NULL,NULL);
+
+// On ajoute le miroir de chaque transition de "automate" dans "automate_miroir"
+Table_iterateur it2;
+for(
+	it2 = premier_iterateur_table( automate->transitions );
+	! iterateur_est_vide( it2 );
+	it2 = iterateur_suivant_table( it2 )
+	){
+	Cle * cle = (Cle*) get_cle( it2 );
+		int fin = cle->origine; //l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
+		char lettre = cle->lettre;
+		
+		Ensemble * fins = (Ensemble*) get_valeur( it2 );
+		for(
+			it1 = premier_iterateur_ensemble( fins );
+			! iterateur_ensemble_est_vide( it1 );
+			it1 = iterateur_suivant_ensemble( it1 )
+			){
+				int origine = get_element( it1 ); //l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
+			ajouter_transition( automate_miroir, origine, lettre, fin );
+		}
+		
+	};
+
+	return automate_miroir;
 }
 
 void action_nombre_de_transitions(
@@ -828,18 +892,13 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 }
 
 Automate * creer_automate_minimal( const Automate* automate ){
-   	//Brzozowski  
-   	//Faire l'automate miroir
-   	Automate *automateM = copier_automate(automate);
-    automateM = miroir(automateM);
-	//determiniser
-	automateM = creer_automate_deterministe(automateM);
-   	//Remiroir
-   	automateM = miroir(automateM);
-   	//redeterminiser
-   	automateM = creer_automate_deterministe(automateM);
+	Automate *automate_minimal = creer_automate();
+	automate_minimal = miroir(automate);
+	automate_minimal = creer_automate_deterministe(automate_minimal);
+	automate_minimal = miroir(automate_minimal);
+	automate_minimal = creer_automate_deterministe(automate_minimal);
 
-   	return automateM;
+	return automate_minimal;   
    
 }
 

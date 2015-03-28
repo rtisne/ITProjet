@@ -411,7 +411,52 @@ Ensemble *dernier(Rationnel *rat)
 
 Ensemble *suivant(Rationnel *rat, int position)
 {
-   A_FAIRE_RETURN(NULL);
+   Ensemble * ensemble_suivant = creer_ensemble(NULL, NULL, NULL);   
+   switch(get_etiquette(rat))
+   {
+      case LETTRE: 
+         break;
+
+      case EPSILON:  
+         break;
+
+      case UNION:
+         ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+         ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));            
+         break;
+
+      case CONCAT:
+        if (est_dans_l_ensemble(dernier(fils_gauche(rat)),position))
+        {
+           ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, premier(fils_droit(rat)));
+        }
+        else
+        {
+            ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+            ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));
+        }
+         break;
+
+      case STAR:
+
+    
+        if (est_dans_l_ensemble(dernier(rat), position))
+        {
+           ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, premier(rat));
+        }
+        else
+        {
+            ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+        }
+         break;
+         
+      default:
+         break;
+   }
+   return ensemble_suivant;
 }
 
 Automate *Glushkov(Rationnel *rat)
