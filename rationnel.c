@@ -327,36 +327,86 @@ Ensemble *premier(Rationnel *rat)
    if(!rat)
       return NULL;
 
-   Ensemble * e = creer_ensemble(NULL,NULL,NULL);
-   switch(get_etiquette(rat)){
-      case EPSILON:
-         //~ ajouter_element(e, Epsilon());
-         break;
+  Ensemble *ensemble_premier = creer_ensemble(NULL,NULL,NULL);
+  switch(get_etiquette(rat))
+   {
       case LETTRE:
-         //~ ajouter_element(e, Lettre(get_lettre(rat)));
+         ajouter_element(ensemble_premier, get_position_min(rat));
          break;
+
+      case EPSILON:  
+         break;
+
       case UNION:
-         //~ e = creer_union_ensemble(e, fils_gauche(rat));
-         //~ e = creer_union_ensemble(e, fils_droit(rat));
+         ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
+         ajouter_elements(ensemble_premier, premier_aux(fils_droit(rat), ensemble_premier));
+            
          break;
+
       case CONCAT:
-         //~ e = creer_union_ensemble(e, fils_gauche(rat));
+         if (contient_mot_vide(fils_gauche(rat)))
+         {
+            ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
+            ajouter_elements(ensemble_premier, premier_aux(fils_droit(rat), ensemble_premier));
+         }
+         else
+         {
+            ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
+         }
          break;
+
       case STAR:
-         //~ e = creer_union_ensemble(e, fils(rat))
+         ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
          break;
+         
       default:
-         assert(false);
          break;
    }
-   return e;
+   return ensemble_premier;
 }
 
 
 
 Ensemble *dernier(Rationnel *rat)
 {
-   A_FAIRE_RETURN(NULL);
+   Ensemble *ensemble_dernier = creer_ensemble(NULL,NULL,NULL);
+   switch(get_etiquette(rat))
+   {
+      case LETTRE:
+         ajouter_element(ensemble_dernier, get_position_min(rat));
+         break;
+
+      case EPSILON:  
+         break;
+
+      case UNION:
+         ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
+         ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+            
+         break;
+
+      case CONCAT:
+         if (contient_mot_vide(fils_droit(rat)))
+         {
+            ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
+            ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+           
+         }
+         else
+         {
+             ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+            
+         }
+         break;
+
+      case STAR:
+         ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
+         break;
+         
+      default:
+         break;
+   }
+   return ensemble_dernier;
 }
 
 Ensemble *suivant(Rationnel *rat, int position)

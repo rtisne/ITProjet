@@ -18,7 +18,7 @@
  *    along with this Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** @file premier.c */ 
+/** @file dernier.c */ 
 
 #include <automate.h>
 #include <rationnel.h>
@@ -27,49 +27,54 @@
 #include <parse.h>
 #include <scan.h>
 
-int test_premier(){
+int test_dernier(){
 	int result = 1;
     {
        Rationnel * rat;
        rat = expression_to_rationnel("a.b");
        numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
+       Ensemble * e = dernier(rat);
        
        TEST(
           1
-          && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
+          && ! est_dans_l_ensemble(e, 1)
+          &&  est_dans_l_ensemble(e, 2)
           , result);
+          liberer_ensemble(e);
     }
 
     {
        Rationnel * rat;
        rat = expression_to_rationnel("(a.a)*.(b.c)");
        numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
+       Ensemble * e = dernier(rat);
        
        TEST(
           1
-          && est_dans_l_ensemble(e, 1)
+          && ! est_dans_l_ensemble(e, 1)
           && ! est_dans_l_ensemble(e, 2)
-          && est_dans_l_ensemble(e, 3)
-          && ! est_dans_l_ensemble(e, 4)
+          && ! est_dans_l_ensemble(e, 3)
+          && est_dans_l_ensemble(e, 4)
           , result);
+          
+          liberer_ensemble(e);
     }
 
     {
        Rationnel * rat;
-       rat = expression_to_rationnel("(a.a)*.(b+c)");
+       rat = expression_to_rationnel("(a.a)*.(b+c)*");
        numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
+       Ensemble * e = dernier(rat);
        
        TEST(
           1
-          && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
+          && ! est_dans_l_ensemble(e, 1)
+          && est_dans_l_ensemble(e, 2)
           && est_dans_l_ensemble(e, 3)
           && est_dans_l_ensemble(e, 4)
           , result);
+          
+          liberer_ensemble(e);
     }
 
     return result;
@@ -77,7 +82,7 @@ int test_premier(){
 
 int main(int argc, char *argv[])
 {
-   if( ! test_premier() )
+   if( ! test_dernier() )
     return 1; 
    
    return 0;
