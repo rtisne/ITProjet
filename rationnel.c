@@ -314,12 +314,74 @@ Rationnel *miroir_expression_rationnelle(Rationnel *rat)
 
 void numeroter_rationnel(Rationnel *rat)
 {
-   A_FAIRE;
+   int valeur = 1;
+   switch(get_etiquette(rat))
+   {
+      case LETTRE:
+         set_position_min(rat, *valeur);
+         set_position_max(rat, *valeur);
+         *valeur=*valeur+1;
+         break;
+
+      case EPSILON:
+         break;
+
+      case UNION:
+         numeroter_rationnel_aux(fils_gauche(rat), valeur);
+         numeroter_rationnel_aux(fils_droit(rat), valeur);
+         set_position_min(rat, get_position_min(fils_gauche(rat)));
+         set_position_max(rat, get_position_max(fils_droit(rat)));         
+         break;
+
+      case CONCAT:
+         numeroter_rationnel_aux(fils_gauche(rat), valeur);
+         numeroter_rationnel_aux(fils_droit(rat), valeur);
+         set_position_min(rat, get_position_min(fils_gauche(rat)));
+         set_position_max(rat, get_position_max(fils_droit(rat)));
+
+         break;
+
+      case STAR:
+         numeroter_rationnel_aux(fils_gauche(rat), valeur);
+         set_position_min(rat, get_position_min(fils_gauche(rat)));
+         set_position_max(rat, get_position_max(fils_gauche(rat)));
+         break;
+         
+      default:
+         break;
+   }
 }
 
 bool contient_mot_vide(Rationnel *rat)
 {
-   A_FAIRE_RETURN(true);
+   switch(get_etiquette(rat))
+   {
+      case LETTRE:
+      return false;
+         break;
+
+      case EPSILON:
+         return true;
+         break;
+
+      case UNION:
+         return (contient_mot_vide(fils_gauche(rat)) 
+            || contient_mot_vide(fils_droit(rat)));       
+         break;
+
+      case CONCAT:
+         return (contient_mot_vide(fils_gauche(rat))
+            && contient_mot_vide(fils_droit(rat)));
+         break;
+
+      case STAR:
+         return true;
+         break;
+         
+      default:
+         break;
+   }
+   return false;
 }
 
 Ensemble *premier(Rationnel *rat)
