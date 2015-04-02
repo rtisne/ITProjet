@@ -400,25 +400,25 @@ Ensemble *premier(Rationnel *rat)
          break;
 
       case UNION:
-         ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
-         ajouter_elements(ensemble_premier, premier_aux(fils_droit(rat), ensemble_premier));
+         ajouter_elements(ensemble_premier, premier(fils_gauche(rat), ensemble_premier));
+         ajouter_elements(ensemble_premier, premier(fils_droit(rat), ensemble_premier));
             
          break;
 
       case CONCAT:
          if (contient_mot_vide(fils_gauche(rat)))
          {
-            ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
-            ajouter_elements(ensemble_premier, premier_aux(fils_droit(rat), ensemble_premier));
+            ajouter_elements(ensemble_premier, premier(fils_gauche(rat), ensemble_premier));
+            ajouter_elements(ensemble_premier, premier(fils_droit(rat), ensemble_premier));
          }
          else
          {
-            ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
+            ajouter_elements(ensemble_premier, premier(fils_gauche(rat), ensemble_premier));
          }
          break;
 
       case STAR:
-         ajouter_elements(ensemble_premier, premier_aux(fils_gauche(rat), ensemble_premier));
+         ajouter_elements(ensemble_premier, premier(fils_gauche(rat), ensemble_premier));
          break;
          
       default:
@@ -442,27 +442,27 @@ Ensemble *dernier(Rationnel *rat)
          break;
 
       case UNION:
-         ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
-         ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+         ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat), ensemble_dernier));
+         ajouter_elements(ensemble_dernier, dernier(fils_droit(rat), ensemble_dernier));
             
          break;
 
       case CONCAT:
          if (contient_mot_vide(fils_droit(rat)))
          {
-            ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
-            ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+            ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat), ensemble_dernier));
+            ajouter_elements(ensemble_dernier, dernier(fils_droit(rat), ensemble_dernier));
            
          }
          else
          {
-             ajouter_elements(ensemble_dernier, dernier_aux(fils_droit(rat), ensemble_dernier));
+             ajouter_elements(ensemble_dernier, dernier(fils_droit(rat), ensemble_dernier));
             
          }
          break;
 
       case STAR:
-         ajouter_elements(ensemble_dernier, dernier_aux(fils_gauche(rat), ensemble_dernier));
+         ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat), ensemble_dernier));
          break;
          
       default:
@@ -483,21 +483,21 @@ Ensemble *suivant(Rationnel *rat, int position)
          break;
 
       case UNION:
-         ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
-         ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));            
+         ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position, ensemble_suivant));
+         ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position, ensemble_suivant));            
          break;
 
       case CONCAT:
         if (est_dans_l_ensemble(dernier(fils_gauche(rat)),position))
         {
-           ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
-           ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position, ensemble_suivant));
            ajouter_elements(ensemble_suivant, premier(fils_droit(rat)));
         }
         else
         {
-            ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
-            ajouter_elements(ensemble_suivant, suivant_aux(fils_droit(rat), position, ensemble_suivant));
+            ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position, ensemble_suivant));
+            ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position, ensemble_suivant));
         }
          break;
 
@@ -506,12 +506,12 @@ Ensemble *suivant(Rationnel *rat, int position)
     
         if (est_dans_l_ensemble(dernier(rat), position))
         {
-           ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+           ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position, ensemble_suivant));
            ajouter_elements(ensemble_suivant, premier(rat));
         }
         else
         {
-            ajouter_elements(ensemble_suivant, suivant_aux(fils_gauche(rat), position, ensemble_suivant));
+            ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position, ensemble_suivant));
         }
          break;
          
@@ -520,10 +520,88 @@ Ensemble *suivant(Rationnel *rat, int position)
    }
    return ensemble_suivant;
 }
+char lettre_position(Rationnel *rat, int position){
+  
+   switch(get_etiquette(rat))
+   {
+      case LETTRE:
+        return get_lettre(rat);
+        break;
 
+      case CONCAT:
+
+      case UNION:
+        if (position < get_position_min(fils_droit(rat)))
+        {
+          return lettre_position(fils_gauche(rat), position);
+        }
+        else
+        {
+          return lettre_position(fils_droit(rat), position);          
+        }
+        break;
+
+      case STAR:
+          return lettre_position(fils_gauche(rat), position);
+         break;
+      default:
+        ERREUR("ERREUR");
+        break;
+   }
+
+}
 Automate *Glushkov(Rationnel *rat)
 {
-   A_FAIRE_RETURN(NULL);
+      numeroter_rationnel(rat);
+      Automate * automate_final = creer_automate();
+       
+       Ensemble * ensemble_premier = premier(rat);
+       Ensemble * ensemble_dernier = dernier(rat);
+
+       Ensemble_iterateur it1;
+
+       ajouter_etat_initial(automate_final, 0);
+     for(
+       it1 = premier_iterateur_ensemble( ensemble_dernier );
+       ! iterateur_ensemble_est_vide( it1 );
+       it1 = iterateur_suivant_ensemble( it1 )
+       ){
+       ajouter_etat_final(automate_final, get_element(it1));
+     }
+     
+     
+     if (contient_mot_vide(rat))
+     {
+       ajouter_etat_final(automate_final , 0);
+     }
+
+     for(
+       it1 = premier_iterateur_ensemble(ensemble_premier);
+       ! iterateur_ensemble_est_vide( it1 );
+       it1 = iterateur_suivant_ensemble( it1 )
+       ){
+       ajouter_transition(automate_final,0 , lettre_position(rat, get_element(it1)), get_element(it1));
+
+     }
+
+
+
+     for (int i = 1; i <= get_position_max(rat);++i)
+     {
+       
+       for(
+         it1 = premier_iterateur_ensemble(suivant(rat, i));
+         ! iterateur_ensemble_est_vide( it1 );
+         it1 = iterateur_suivant_ensemble( it1 )
+         ){
+
+         ajouter_transition(automate_final,i , lettre_position(rat, get_element(it1)), get_element(it1));
+       }
+       
+     }
+     liberer_ensemble(ensemble_premier);
+     liberer_ensemble(ensemble_dernier);
+   return automate_final;
 }
 
 bool meme_langage (const char *expr1, const char* expr2)
