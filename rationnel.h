@@ -1,5 +1,5 @@
 /*
- *   Ce fichier fait partie d'un projet de programmation donné en Licence 3 
+ *   Ce fichier fait partie d'un projet de programmation donné en Licence 3
  *   à l'Université de Bordeaux.
  *
  *   Copyright (C) 2015 Giuliana Bianchi, Adrien Boussicault, Thomas Place, Marc Zeitoun
@@ -18,7 +18,7 @@
  *    along with this Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** @file rationnel.h */ 
+/** @file rationnel.h */
 
 #ifndef __RATIONNEL_H__
 #define __RATIONNEL_H__
@@ -36,7 +36,7 @@
  * - STAR (l'étoile d'une sous-expression)
  * - UNION (l'union de 2 sous-expressions)
  * - CONCAT (la concaténation de 2 sous-expressions)
- * 
+ *
  * S'il est nécessaire de représenter l'expression vide, on utilise NULL comme expression rationnelle (voir @ref Rationnel).
  */
 typedef enum Noeud {EPSILON,	//!< Mot vide
@@ -47,7 +47,7 @@ typedef enum Noeud {EPSILON,	//!< Mot vide
 } Noeud;
 
 /**
- * @brief Le type décrivant une expression rationnelle. 
+ * @brief Le type décrivant une expression rationnelle.
  *
  * Une expression contient:
  * - un champ étiquette de type Noeud, donnant le type de l'expression.
@@ -72,13 +72,13 @@ typedef struct Rationnel {
 
    struct Rationnel *pere;		//!< Le noeud père.
    int position_min;			//!< Position utilisée pour l'algorithme de Glushkov:
-								//!- Pour une lettre, désigne la position de la lettre, en commençant la numéroration par 1. Pour une lettre, 
+								//!- Pour une lettre, désigne la position de la lettre, en commençant la numéroration par 1. Pour une lettre,
 								//!position_min a donc la même valeur que position_max.
                                 //!- Pour un noeud interne, désigne la position <b>la plus petite</b> d'une lettre de la
                                 //!sous-expression correspondant à ce noeud.
  								//!- Non utilisée pour EPSILON.
    int position_max;			//!< Position utilisée pour l'algorithme de Glushkov:
-								//!- Pour une lettre, désigne la position de la lettre, en commençant la numéroration par 1. Pour une lettre, 
+								//!- Pour une lettre, désigne la position de la lettre, en commençant la numéroration par 1. Pour une lettre,
 								//!position_max a donc la même valeur que position_min.
                                 //!- Pour un noeud interne, désigne la position <b>la plus grande</b> d'une lettre de la
                                 //!sous-expression correspondant à ce noeud. Par exemple, pour l'expression \f$(a+b)^*\f$ les champs position_min et
@@ -125,74 +125,74 @@ Rationnel *rationnel(Noeud etiquette, char lettre, int position_min, int positio
 
 /**
  * @brief Alloue et remplit une structure Rationnel initialisée à une feuille "mot vide".
- */   
+ */
 Rationnel *Epsilon();
 
 /**
  * @brief Alloue et remplit une structure Rationnel, initialisée à une feuille "lettre".
  * @param lettre La lettre pour initialiser la structure.
- */   
+ */
 Rationnel *Lettre(char lettre);
 
 /**
  * @brief Construit l'union de deux rationnels.
  * @param rat1 Pointeur sur le premier rationnel
  * @param rat2 Pointeur sur le second rationnel
- */   
+ */
 Rationnel *Union(Rationnel* rat1, Rationnel* rat2);
 
 /**
  * @brief Construit le produit (la concaténation) de deux rationnels.
  * @param rat1 Pointeur sur le premier rationnel
  * @param rat2 Pointeur sur le second rationnel
- */   
+ */
 Rationnel *Concat(Rationnel* rat1, Rationnel* rat2);
 
 /**
  * @brief Construit l'étoile d'un rationnel.
  * @param rat Pointeur sur le rationnel dont on construit l'étoile.
- */   
+ */
 Rationnel *Star(Rationnel* rat);
 
 /**
  * @brief Teste si un pointeur sur un rationnel représente la racine.
  * @param rat Pointeur sur le rationnel à tester.
- */   
+ */
 bool est_racine(Rationnel* rat);
 
 /**
  * @brief Renvoie le type de noeud d'un rationnel.
  * @param rat Pointeur sur le rationnel.
  * @return Le type @ref Noeud de l'expression.
- */   
+ */
 Noeud get_etiquette(Rationnel* rat);
 
 /**
  * @brief Renvoie la lettre portée par une expression de type LETTRE.
  * @param rat Pointeur sur le rationnel, qui doit être de type LETTRE.
  * @return Un char, le caractère portée par l'expression.
- */   
+ */
 char get_lettre(Rationnel* rat);
 
 /**
  * @brief Renvoie la position minimale d'une expression rationnelle.
  * @param rat Pointeur sur le rationnel.
  * @return Un entier donnant la position minimale contenur dans l'expression rationnelle.
- */   
+ */
 int get_position_min(Rationnel* rat);
 
 /**
  * @brief Renvoie la position maximale d'une expression rationnelle.
  * @param rat Pointeur sur le rationnel.
  * @return Un entier donnant la position maximale contenue dans l'expression rationnelle.
- */   
+ */
 int get_position_max(Rationnel* rat);
 
 /**
  * @brief Affecte la position minimale d'une expression rationnelle.
  * @param rat Pointeur sur le rationnel.
  * @param valeur Valeur à laquelle affecter la position minimale.
- */   
+ */
 void set_position_min(Rationnel* rat, int valeur);
 
 /**
@@ -205,32 +205,32 @@ void set_position_max(Rationnel* rat, int valeur);
 /**
  * @brief Renvoie le fils gauche d'une expression rationnelle UNION ou CONCAT.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 Rationnel *fils_gauche(Rationnel* rat);
 
 /**
  * @brief Renvoie le fils droit d'une expression rationnelle UNION ou CONCAT.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 Rationnel *fils_droit(Rationnel* rat);
 
 /**
  * @brief Renvoie le fils d'une expression rationnelle STAR.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 Rationnel *fils(Rationnel* rat);
 
 /**
  * @brief Renvoie le pere d'une (sous-)expression rationnelle.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 Rationnel *pere(Rationnel* rat);
 
 /**
  * @brief Affiche une expression rationnelle, avec la syntaxe habituelle.
  * Pour plus de lisibilité, différents jeux de parenthèses sont utilisés.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 void print_rationnel(Rationnel* rat);
 
 /**
@@ -240,7 +240,7 @@ void print_rationnel(Rationnel* rat);
  * - les lettres sont données en minuscule.
  * - la concaténation se note par un point '.'
  * - l'union se note par '+'.
- * - l'étoile se note par '*'. 
+ * - l'étoile se note par '*'.
  * - on peut parenthéser une sous-expression avec les parenthèses '('...)'.
  * Le parseur ne prend pas en compte le mot vide ni le langage vide.
  * @param expr: expression rationnelle donnée avec la syntaxe ci-dessus.
@@ -249,7 +249,7 @@ Rationnel *expression_to_rationnel(const char *expr);
 
 /**
  * @brief Exporte l'arbre syntaxique d'une expression rationnelle dans un fichier dot. Dans chaque noeud, le type du noeud ainsi que les positions min et max sont indiquées.
- * 
+ *
  * @param rat Pointeur sur le rationnel.
  * @param nom_fichier Nom du fichier vers lequel exporter.
  *
@@ -263,23 +263,23 @@ void rationnel_to_dot(Rationnel *rat, char* nom_fichier);
  * @brief Fonction auxiliaire d'export d'un arbre syntaxique d'une expression vers un fichier dot.
  *
  * Pour visualiser une expression rationnelle, ne pas utiliser cette fonction mais plutôt la fonction @ref rationnel_to_dot.
- * 
+ *
  * @param rat Pointeur sur le rationnel.
  * @param output FILE* vers lequel exporter, qui doit avoir été ouvert en écriture.
  * @param pere Le numéro du père du noeud courant, utilisé récursivement pour dessiner les liens.
  * @param noeud_courant Le numéro du noeud courant, utilisé récursivement.
  * @return La prochaine valeur de noeud courant libre.
- */   
+ */
 int rationnel_to_dot_aux(Rationnel *rat, FILE *output, int pere, int noeud_courant);
 
 /**
  * @brief @todo Affecte les positions <b>position_min</b> et
  * <b>position_max</b> de toutes les sous-expressions d'une expression
  * rationnelle (voir Rationnel::position_min et
- * Rationnel::position_max pour ces champs, ou la structure Rationnel). 
+ * Rationnel::position_max pour ces champs, ou la structure Rationnel).
  * Une expression complète sera numérotée à partir de la position 1 pour sa lettre la plus à gauche.
  * @param rat Pointeur sur le rationnel.
- */   
+ */
 void numeroter_rationnel(Rationnel *rat);
 
 /**
@@ -304,14 +304,12 @@ Ensemble *premier(Rationnel *rat);
 Ensemble *dernier(Rationnel *);
 
 /**
- * @brief @todo Calcule l'ensemble des positions des lettres pouvant suivre une position donnée dans au moins un mot du langage de l'expression. 
+ * @brief @todo Calcule l'ensemble des positions des lettres pouvant suivre une position donnée dans au moins un mot du langage de l'expression.
  * @param rat Une expression rationnelle.
  * @param position Un entier désignant une position dans l'expression rationnelle.
  * @return L'ensemble des positions des lettres pouvant suivre la position donnée en second argument dans au moins un mot du langage de l'expression.
  */
 Ensemble *suivant(Rationnel *, int);
-
-char lettre_position(Rationnel *rat, int position);
 
 /**
  * @brief @todo
@@ -354,7 +352,7 @@ void print_ligne(Rationnel **ligne, int nb_vars);
 void print_systeme(Systeme systeme, int taille);
 
 /**
- * @brief @todo Résout une équation de langages en utilisant le lemme d'Arden: si \f$U\f$ et \f$V\f$ sont deux langages et \f$U\f$ ne contient pas le mot vide, et si \f$X\f$ est un langage tel que \f$X=UX+V\f$, alors \f$X=U^*V\f$. 
+ * @brief @todo Résout une équation de langages en utilisant le lemme d'Arden: si \f$U\f$ et \f$V\f$ sont deux langages et \f$U\f$ ne contient pas le mot vide, et si \f$X\f$ est un langage tel que \f$X=UX+V\f$, alors \f$X=U^*V\f$.
  * @param ligne La ligne codant l'équation de langages.
  * @param numero_variable Le numéro de la variable jouant le rôle de X dans le lemme d'Arden, à exprimer en fonction des autres variables. Si ce numéro est \f$i\f$, le membre gauche de l'équation est donc \f$X_i\f$ (ce membre gauche n'est pas codé dans le paramètre 'ligne').
  * @param nb_vars Le nombre de variables.

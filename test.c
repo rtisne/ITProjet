@@ -11,11 +11,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
+int main()
+{
     Rationnel * rat;
 	char * expr = "((a.b.d)*.f+a.b.c+b)*";
     rat = expression_to_rationnel(expr);
-	printf("%s", expr);
+	printf("%s\n", expr);
     numeroter_rationnel(rat);
     rationnel_to_dot(rat,"test.dot");
     printf("%d %d\n", contient_mot_vide(rat), true);
@@ -23,12 +24,10 @@ int main(){
     Ensemble *ep = premier(rat);
     Ensemble *ed = dernier(rat);
     Ensemble *es = suivant(rat, 3);
-	char d = lettre_position(rat, 3);
 	Automate *a = Glushkov(rat);
 
     Automate *aMir = miroir(a);
     Automate *aMin = creer_automate_minimal(a);
-
 
     if(est_dans_l_ensemble(ep, 1)
         && ! est_dans_l_ensemble(ep, 2)
@@ -72,8 +71,7 @@ int main(){
     print_ensemble(ed, NULL);
     printf("\nsuivant\n");
 	print_ensemble(es, NULL);
-    printf("\nlettre position\n %c\n", d);
-    printf("automate\n");
+    printf("\nautomate\n");
     print_automate(a);
     printf("\nautomate mirroir\n");
     print_automate(aMir);

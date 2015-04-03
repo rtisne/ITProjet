@@ -497,7 +497,8 @@ Ensemble *dernier(Rationnel *rat)
     return ensemble_dernier;
 }
 
-Ensemble *suivant_recursif(Ensemble *ensemble_suivant, Rationnel *rat, int position){
+Ensemble *suivant_recursif(Ensemble *ensemble_suivant, Rationnel *rat, int position)
+{
     if(!rat)
         return NULL;
 
@@ -559,13 +560,9 @@ char lettre_position(Rationnel *rat, int position)
 
         case UNION:
             if (position < get_position_min(fils_droit(rat)))
-            {
                 return lettre_position(fils_gauche(rat), position);
-            }
             else
-            {
                 return lettre_position(fils_droit(rat), position);
-            }
             break;
 
         case STAR:
