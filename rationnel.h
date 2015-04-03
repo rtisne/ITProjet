@@ -311,6 +311,8 @@ Ensemble *dernier(Rationnel *);
  */
 Ensemble *suivant(Rationnel *, int);
 
+char lettre_position(Rationnel *rat, int position);
+
 /**
  * @brief @todo
  * @brief Retourne l'automate de Glushkov associé à une expression rationnelle.

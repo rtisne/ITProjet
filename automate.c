@@ -1,5 +1,5 @@
 /*
- *   Ce fichier fait partie d'un projet de programmation donné en Licence 3 
+ *   Ce fichier fait partie d'un projet de programmation donné en Licence 3
  *   à l'Université de Bordeaux
  *
  *   Copyright (C) 2014, 2015 Adrien Boussicault
@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h> 
+#include <limits.h>
 
 #include <assert.h>
 
@@ -41,7 +41,7 @@ void action_get_max_etat( const intptr_t element, void* data ){
 
 int get_max_etat( const Automate* automate ){
 	int max = INT_MIN;
-	
+
 	pour_tout_element( automate->etats, action_get_max_etat, &max );
 
 	return max;
@@ -101,13 +101,13 @@ Automate * creer_automate(){
 	automate->etats = creer_ensemble( NULL, NULL, NULL );
 	automate->alphabet = creer_ensemble( NULL, NULL, NULL );
 	automate->transitions = creer_table(
-		( int(*)(const intptr_t, const intptr_t) ) comparer_cle , 
+		( int(*)(const intptr_t, const intptr_t) ) comparer_cle ,
 		( intptr_t (*)( const intptr_t ) ) copier_cle,
 		( void(*)(intptr_t) ) supprimer_cle
 	);
 	automate->initiaux = creer_ensemble( NULL, NULL, NULL );
 	automate->finaux = creer_ensemble( NULL, NULL, NULL );
-	automate->vide = creer_ensemble( NULL, NULL, NULL ); 
+	automate->vide = creer_ensemble( NULL, NULL, NULL );
 	return automate;
 }
 
@@ -200,7 +200,7 @@ Ensemble * delta(
 	Ensemble * res = creer_ensemble( NULL, NULL, NULL );
 
 	Ensemble_iterateur it;
-	for( 
+	for(
 		it = premier_iterateur_ensemble( etats_courants );
 		! iterateur_ensemble_est_vide( it );
 		it = iterateur_suivant_ensemble( it )
@@ -314,21 +314,21 @@ Automate* copier_automate( const Automate* automate ){
  *                         x = 0
  *                          |
  *                          V
- * 
- * 283 237 195 157 123  93  67  91 119 151 187 227 271 
- * 238 196 158 124  94  68  46  66  90 118 150 186 226 
- * 197 159 125  95  69  47  29  45  65  89 117 149 185 
- * 160 126  96  70  48  30  16  28  44  64  88 116 148 
- * 127  97  71  49  31  17   7  15  27  43  63  87 115 
- *  98  72  50  32  18   8   2   6  14  26  42  62  86 
+ *
+ * 283 237 195 157 123  93  67  91 119 151 187 227 271
+ * 238 196 158 124  94  68  46  66  90 118 150 186 226
+ * 197 159 125  95  69  47  29  45  65  89 117 149 185
+ * 160 126  96  70  48  30  16  28  44  64  88 116 148
+ * 127  97  71  49  31  17   7  15  27  43  63  87 115
+ *  98  72  50  32  18   8   2   6  14  26  42  62  86
  *  73  51  33  19   9   3   0   1   5  13  25  41  61  <- y = 0
- * 100  74  52  34  20  10   4  12  24  40  60  84 112 
- * 131 101  75  53  35  21  11  23  39  59  83 111 143 
- * 166 132 102  76  54  36  22  38  58  82 110 142 178 
- * 205 167 133 103  77  55  37  57  81 109 141 177 217 
- * 248 206 168 134 104  78  56  80 108 140 176 216 260 
+ * 100  74  52  34  20  10   4  12  24  40  60  84 112
+ * 131 101  75  53  35  21  11  23  39  59  83 111 143
+ * 166 132 102  76  54  36  22  38  58  82 110 142 178
+ * 205 167 133 103  77  55  37  57  81 109 141 177 217
+ * 248 206 168 134 104  78  56  80 108 140 176 216 260
  * 295 249 207 169 135 105  79 107 139 175 215 259 307
- * 
+ *
  */
 int couple_to_int( int q1, int q2 ){
 	if(q1==0 && q2==0) return 0;
@@ -337,7 +337,7 @@ int couple_to_int( int q1, int q2 ){
 	if( q1 > 0 && q2 >= 0 ) return prev + 1 + q2;
 	if( q1 <= 0 && q2 > 0 ) return prev + sum+1 + (-q1);
 	if( q1 < 0 && q2 <= 0 ) return prev + 2*sum+ 1 + (-q2);
-	return prev + 3*sum+ 1 + q1; //cas q1>=0 && q2<0 
+	return prev + 3*sum+ 1 + q1; //cas q1>=0 && q2<0
 }
 
 void int_to_couple( int entree, int * q1, int * q2 ){
@@ -351,7 +351,7 @@ void int_to_couple( int entree, int * q1, int * q2 ){
 	int couche = entree - 2*sum*(sum-1);
 	int r = couche % sum;
 	int s = sum-r;
-	switch( couche/sum ){ 
+	switch( couche/sum ){
 		case 0:
 			*q2=r;
 			*q1=s;
@@ -411,7 +411,7 @@ Automate * creer_intersection_des_automates(
 			it_etat_2 = iterateur_suivant_ensemble( it_etat_2 )
 		){
 			int q2 = get_element( it_etat_2 );
-			ajouter_etat_initial( 
+			ajouter_etat_initial(
 				res, couple_to_int( q1, q2 )
 			);
 		}
@@ -430,9 +430,9 @@ Automate * creer_intersection_des_automates(
 			it_etat_2 = iterateur_suivant_ensemble( it_etat_2 )
 		){
 			int q2 = get_element( it_etat_2 );
-			ajouter_etat_final( 
+			ajouter_etat_final(
 				res, couple_to_int( q1, q2 )
-			);			
+			);
 		}
 	}
 
@@ -537,7 +537,7 @@ Ensemble* etats_accessibles( const Automate * automate, int etat ){
 		next = creer_ensemble( NULL, NULL, NULL );
 
 		Ensemble_iterateur it;
-		for( 
+		for(
 			it = premier_iterateur_ensemble( get_alphabet( automate ) );
 			! iterateur_ensemble_est_vide( it );
 			it = iterateur_suivant_ensemble( it )
@@ -551,7 +551,7 @@ Ensemble* etats_accessibles( const Automate * automate, int etat ){
 		liberer_ensemble( courants );
 		courants = next;
 	}
-	
+
 	liberer_ensemble( courants );
 
 	return resultat;
@@ -621,9 +621,9 @@ Automate *automate_accessible( const Automate * automate ){
 		it2 = iterateur_suivant_table( it2 )
 	){
 		Cle * cle = (Cle*) get_cle( it2 );
-		int origine = cle->origine; 
+		int origine = cle->origine;
 		char lettre = cle->lettre;
-		if( est_dans_l_ensemble( access, origine ) ){ 
+		if( est_dans_l_ensemble( access, origine ) ){
 			Ensemble * fins = (Ensemble*) get_valeur( it2 );
 			for(
 				it1 = premier_iterateur_ensemble( fins );
@@ -639,77 +639,50 @@ Automate *automate_accessible( const Automate * automate ){
 	return res;
 }
 
-Automate *miroir( const Automate * automate){
+Automate *miroir( const Automate * automate)
+{
 
+    Automate *automate_miroir = creer_automate();
 
-   Ensemble_iterateur it1;
-
-	Automate * automate_miroir = creer_automate();
-
+    // On remplace les états finaux de "automate" dans les états initiaux de "automate_miroir"
+	ajouter_elements( automate_miroir->initiaux, get_finaux( automate ) );
+	// On ajoute les états initiaux de "automate" dans les états finaux de "automate_miroir"
+	ajouter_elements( automate_miroir->finaux, get_initiaux( automate ) );
 	// On ajoute les états de "automate" dans les états de "automate_miroir"
-	for(
-		it1 = premier_iterateur_ensemble( get_etats(automate) );
-		! iterateur_ensemble_est_vide( it1 );
-		it1 = iterateur_suivant_ensemble( it1 )
-		){
-		ajouter_etat( automate_miroir, get_element( it1 ) );
-}
-
-   // On remplace les états finaux de "automate" dans les états initiaux de "automate_miroir"
-for(
-	it1 = premier_iterateur_ensemble( get_finaux( automate ) );
-	! iterateur_ensemble_est_vide( it1 );
-	it1 = iterateur_suivant_ensemble( it1 )
-	){
-	ajouter_etat_initial( automate_miroir, get_element( it1 ) );
-}
-
-   // On remplace les états initiaux de "automate" dans les états finaux de "automate_miroir"
-for(
-	it1 = premier_iterateur_ensemble( get_initiaux( automate ) );
-	! iterateur_ensemble_est_vide( it1 );
-	it1 = iterateur_suivant_ensemble( it1 )
-	){
-	ajouter_etat_final( automate_miroir, get_element( it1 ) );
-}
-
+	ajouter_elements( automate_miroir->etats, get_etats( automate ) );
 	// On ajoute l'alphabet de "automate" dans l'alphabet de "automate_miroir"
-for(
-	it1 = premier_iterateur_ensemble( get_alphabet( automate ) );
-	! iterateur_ensemble_est_vide( it1 );
-	it1 = iterateur_suivant_ensemble( it1 )
-	){
-	ajouter_lettre( automate_miroir, (char) get_element( it1 ) );
-}
+	ajouter_elements( automate_miroir->alphabet, get_alphabet( automate ) );
 
+    // On inverse le sens des fleches de l'automate
+    Table_iterateur it_transition;
+    Ensemble_iterateur it_origines;
+    for(
+        it_transition = premier_iterateur_table( automate->transitions );
+        ! iterateur_est_vide( it_transition );
+        it_transition = iterateur_suivant_table( it_transition )
+        )
+    {
+        Cle *cle = (Cle *) get_cle( it_transition );
+        // l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
+        int fin = cle->origine;
+        char lettre = cle->lettre;
 
+        // les voisins de cette cle->origine (ie fin) et cette lettre deviennent l'ensemble des origines
+        const Ensemble *origines = voisins( automate, fin, lettre );
 
-automate_miroir->vide = creer_ensemble(NULL,NULL,NULL);
+        for(
+            it_origines = premier_iterateur_ensemble( origines );
+            ! iterateur_ensemble_est_vide( it_origines );
+            it_origines = iterateur_suivant_ensemble( it_origines )
+            )
+        {
+            // l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
+            int origine = get_element( it_origines );
+            ajouter_transition( automate_miroir, origine, lettre, fin );
+        }
+    }
 
-// On ajoute le miroir de chaque transition de "automate" dans "automate_miroir"
-Table_iterateur it2;
-for(
-	it2 = premier_iterateur_table( automate->transitions );
-	! iterateur_est_vide( it2 );
-	it2 = iterateur_suivant_table( it2 )
-	){
-	Cle * cle = (Cle*) get_cle( it2 );
-		int fin = cle->origine; //l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
-		char lettre = cle->lettre;
-		
-		Ensemble * fins = (Ensemble*) get_valeur( it2 );
-		for(
-			it1 = premier_iterateur_ensemble( fins );
-			! iterateur_ensemble_est_vide( it1 );
-			it1 = iterateur_suivant_ensemble( it1 )
-			){
-				int origine = get_element( it1 ); //l'origine de la transition de "automate" devient la fin de la transition de "automate_miroir"
-			ajouter_transition( automate_miroir, origine, lettre, fin );
-		}
-		
-	};
-
-	return automate_miroir;
+   	return automate_miroir;
 }
 
 void action_nombre_de_transitions(
@@ -774,9 +747,9 @@ void print_automate( const Automate * automate ){
 	printf("\n- Alphabet : ");
 	print_ensemble( get_alphabet( automate ), print_lettre );
 	printf("\n- Transitions : ");
-	print_table( 
+	print_table(
 		automate->transitions,
-		( void (*)( const intptr_t ) ) print_cle, 
+		( void (*)( const intptr_t ) ) print_cle,
 		( void (*)( const intptr_t ) ) print_ensemble_2,
 		""
 	);
@@ -784,8 +757,8 @@ void print_automate( const Automate * automate ){
 }
 
 int le_mot_est_reconnu( const Automate* automate, const char* mot ){
-	Ensemble * arrivee = delta_star( automate, get_initiaux(automate) , mot ); 
-	
+	Ensemble * arrivee = delta_star( automate, get_initiaux(automate) , mot );
+
 	int result = 0;
 
 	Ensemble_iterateur it;
@@ -803,12 +776,12 @@ int le_mot_est_reconnu( const Automate* automate, const char* mot ){
 	return result;
 }
 
-int ajouter_ensemble( 
+int ajouter_ensemble(
 	const Ensemble* ens,
-	Table* ensemble_to_id, Table* id_to_ensemble, Fifo* f, 
+	Table* ensemble_to_id, Table* id_to_ensemble, Fifo* f,
 	Automate * aut, int next_id
 ){
-	
+
 	Table_iterateur it = trouver_table( ensemble_to_id, (intptr_t) ens );
 	if( iterateur_est_vide( it ) ){
 		add_table( ensemble_to_id, (intptr_t) ens, next_id );
@@ -826,14 +799,14 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 
 	Fifo* f = creer_fifo();
 	Table* ensemble_to_id = creer_table(
-		( int(*)(const intptr_t, const intptr_t) ) comparer_ensemble, 
+		( int(*)(const intptr_t, const intptr_t) ) comparer_ensemble,
 		( intptr_t (*)( const intptr_t ) ) copier_ensemble,
 		( void(*)(intptr_t) ) liberer_ensemble
 	);
 	Table* id_to_ensemble = creer_table( NULL, NULL, NULL );
-	
+
 	int next_id = ajouter_ensemble(
-		copier_ensemble( get_initiaux( automate ) ), 
+		copier_ensemble( get_initiaux( automate ) ),
 		ensemble_to_id, id_to_ensemble, f, res, 0
 	);
 	ajouter_etat_initial( res, 0 );
@@ -855,7 +828,7 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 			);
 			ajouter_transition(
 				res, id_e, lettre, get_valeur(
-					trouver_table( ensemble_to_id, (intptr_t) img ) 
+					trouver_table( ensemble_to_id, (intptr_t) img )
 				)
 			);
 			if( next_id == id ){
@@ -873,11 +846,11 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 		){
 			int elmt = get_element( it_e );
 			if(  est_un_etat_final_de_l_automate( automate, elmt ) ){
-				ajouter_etat_final( res, id_e );	
+				ajouter_etat_final( res, id_e );
 				break;
 			}
 		}
-		
+
 	}
 
 	pour_toute_valeur_table(
@@ -886,19 +859,20 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 	);
 	liberer_table( id_to_ensemble );
 	liberer_table( ensemble_to_id );
-	 
+
 	liberer_fifo( f );
 	return res;
 }
 
-Automate * creer_automate_minimal( const Automate* automate ){
+Automate * creer_automate_minimal( const Automate* automate )
+{
 	Automate *automate_minimal = creer_automate();
 	automate_minimal = miroir(automate);
 	automate_minimal = creer_automate_deterministe(automate_minimal);
 	automate_minimal = miroir(automate_minimal);
 	automate_minimal = creer_automate_deterministe(automate_minimal);
 
-	return automate_minimal;   
-   
+	return automate_minimal;
+
 }
 

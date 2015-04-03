@@ -1,5 +1,5 @@
 /*
- *   Ce fichier fait partie d'un projet de programmation donné en Licence 3 
+ *   Ce fichier fait partie d'un projet de programmation donné en Licence 3
  *   à l'Université de Bordeaux.
  *
  *   Copyright (C) 2015 Giuliana Bianchi, Adrien Boussicault, Thomas Place, Marc Zeitoun
@@ -67,7 +67,7 @@ Rationnel *Union(Rationnel* rat1, Rationnel* rat2)
    // Cas particulier où rat2 est vide
    if (!rat2)
       return rat1;
-   
+
    return rationnel(UNION, 0, 0, 0, NULL, rat1, rat2, NULL);
 }
 
@@ -81,7 +81,7 @@ Rationnel *Concat(Rationnel* rat1, Rationnel* rat2)
 
    if (get_etiquette(rat2) == EPSILON)
       return rat1;
-   
+
    return rationnel(CONCAT, 0, 0, 0, NULL, rat1, rat2, NULL);
 }
 
@@ -102,32 +102,32 @@ Noeud get_etiquette(Rationnel* rat)
 
 char get_lettre(Rationnel* rat)
 {
-   assert (get_etiquette(rat) == LETTRE);
+//   assert (get_etiquette(rat) == LETTRE);
    return rat->lettre;
 }
 
 int get_position_min(Rationnel* rat)
 {
-   assert (get_etiquette(rat) == LETTRE);
+//   assert (get_etiquette(rat) == LETTRE);
    return rat->position_min;
 }
 
 int get_position_max(Rationnel* rat)
 {
-   assert (get_etiquette(rat) == LETTRE);
+//   assert (get_etiquette(rat) == LETTRE);
    return rat->position_max;
 }
 
 void set_position_min(Rationnel* rat, int valeur)
 {
-   assert (get_etiquette(rat) == LETTRE);
+//   assert (get_etiquette(rat) == LETTRE);
    rat->position_min = valeur;
    return;
 }
 
 void set_position_max(Rationnel* rat, int valeur)
 {
-   assert (get_etiquette(rat) == LETTRE);
+//   assert (get_etiquette(rat) == LETTRE);
    rat->position_max = valeur;
    return;
 }
@@ -163,13 +163,13 @@ void print_rationnel(Rationnel* rat)
       printf("∅");
       return;
    }
-   
+
    switch(get_etiquette(rat))
    {
       case EPSILON:
-         printf("ε");         
+         printf("ε");
          break;
-         
+
       case LETTRE:
          printf("%c", get_lettre(rat));
          break;
@@ -179,7 +179,7 @@ void print_rationnel(Rationnel* rat)
          print_rationnel(fils_gauche(rat));
          printf(" + ");
          print_rationnel(fils_droit(rat));
-         printf(")");         
+         printf(")");
          break;
 
       case CONCAT:
@@ -187,13 +187,13 @@ void print_rationnel(Rationnel* rat)
          print_rationnel(fils_gauche(rat));
          printf(" . ");
          print_rationnel(fils_droit(rat));
-         printf("]");         
+         printf("]");
          break;
 
       case STAR:
          printf("{");
          print_rationnel(fils(rat));
-         printf("}*");         
+         printf("}*");
          break;
 
       default:
@@ -211,18 +211,18 @@ Rationnel *expression_to_rationnel(const char *expr)
     // Initialisation du scanner
     if (yylex_init(&scanner))
         return NULL;
- 
+
     state = yy_scan_string(expr, scanner);
 
     // Test si parsing ok.
-    if (yyparse(&rat, scanner)) 
+    if (yyparse(&rat, scanner))
         return NULL;
-    
+
     // Libération mémoire
     yy_delete_buffer(state, scanner);
- 
+
     yylex_destroy(scanner);
- 
+
     return rat;
 }
 
@@ -233,14 +233,14 @@ void rationnel_to_dot(Rationnel *rat, char* nom_fichier)
 }
 
 int rationnel_to_dot_aux(Rationnel *rat, FILE *output, int pere, int noeud_courant)
-{   
+{
    int saved_pere = noeud_courant;
 
    if (pere >= 1)
       fprintf(output, "\tnode%d -> node%d;\n", pere, noeud_courant);
    else
       fprintf(output, "digraph G{\n");
-   
+
    switch(get_etiquette(rat))
    {
       case LETTRE:
@@ -269,7 +269,7 @@ int rationnel_to_dot_aux(Rationnel *rat, FILE *output, int pere, int noeud_coura
          fprintf(output, "\tnode%d [label = \"* (%d/%d)\"];\n", noeud_courant, rat->position_min, rat->position_max);
          noeud_courant = rationnel_to_dot_aux(fils(rat), output, noeud_courant, noeud_courant+1);
          break;
-         
+
       default:
          assert(false);
          break;
@@ -285,7 +285,8 @@ Rationnel *miroir_expression_rationnelle(Rationnel *rat)
       return NULL;
 
    Rationnel *f1, *f2;
-   switch(get_etiquette(rat)){
+   switch(get_etiquette(rat))
+   {
       case EPSILON:
          return Epsilon();
          break;
@@ -312,304 +313,324 @@ Rationnel *miroir_expression_rationnelle(Rationnel *rat)
    }
 }
 
-void numeroter_rationnel_aux(Rationnel *rat, int *valeur)
+int numeroter_rationnel_recursif(Rationnel *rat)
 {
-   switch(get_etiquette(rat))
-   {
-      case LETTRE:
-         set_position_min(rat, *valeur);
-         set_position_max(rat, *valeur);
-         *valeur=*valeur+1;
-         break;
+    if(!rat)
+        return 0;
 
-      case EPSILON:
-         break;
+    switch(get_etiquette(rat))
+    {
+        case EPSILON:
+            // le max du rationnel = min du rationnel
+            set_position_max(rat, get_position_min(rat));
+            break;
 
-      case UNION:
-         numeroter_rationnel_aux(fils_gauche(rat), valeur);
-         numeroter_rationnel_aux(fils_droit(rat), valeur);
-         set_position_min(rat, get_position_min(fils_gauche(rat)));
-         set_position_max(rat, get_position_max(fils_droit(rat)));         
-         break;
+        case LETTRE:
+            // le max du rationnel = min du rationnel
+            set_position_max(rat, get_position_min(rat));
+            break;
 
-      case CONCAT:
-         numeroter_rationnel_aux(fils_gauche(rat), valeur);
-         numeroter_rationnel_aux(fils_droit(rat), valeur);
-         set_position_min(rat, get_position_min(fils_gauche(rat)));
-         set_position_max(rat, get_position_max(fils_droit(rat)));
+        case UNION:
+            // le min du fils gauche du rationnel = le min du rationnel
+            set_position_min(fils_gauche(rat), get_position_min(rat));
+            // le min du fils droit du rationnel = le max du fils gauche du rationnel + 1
+            set_position_min(fils_droit(rat), numeroter_rationnel_recursif(fils_gauche(rat)) + 1);
+            // le max du rationnel = le max du fils droit
+            set_position_max(rat, numeroter_rationnel_recursif(fils_droit(rat)));
+            break;
 
-         break;
+        case CONCAT:
+            // le min du fils gauche du rationnel = le min du rationnel
+            set_position_min(fils_gauche(rat), get_position_min(rat));
+            // le min du fils droit du rationnel = le max du fils gauche du rationnel + 1
+            set_position_min(fils_droit(rat), numeroter_rationnel_recursif(fils_gauche(rat)) + 1);
+            // le max du rationnel = le max du fils droit
+            set_position_max(rat, numeroter_rationnel_recursif(fils_droit(rat)));
+            break;
 
-      case STAR:
-         numeroter_rationnel_aux(fils_gauche(rat), valeur);
-         set_position_min(rat, get_position_min(fils_gauche(rat)));
-         set_position_max(rat, get_position_max(fils_gauche(rat)));
-         break;
-         
-      default:
-         break;
-   }
+        case STAR:
+            // le min du fils du rationnel = le min du rationnel
+            set_position_min(fils(rat), get_position_min(rat));
+            // le max du rationnel = le max du fils droit
+            set_position_max(rat, numeroter_rationnel_recursif(fils(rat)));
+            break;
 
-
+        default:
+            assert(false);
+            break;
+    }
+    return get_position_max(rat);
 }
 
 void numeroter_rationnel(Rationnel *rat)
 {
-   int valeur = 1;
-   numeroter_rationnel_aux(rat, &valeur);
+    if(!rat)
+        return;
+
+    set_position_min(rat, 1);
+    numeroter_rationnel_recursif(rat);
 }
 
 
 bool contient_mot_vide(Rationnel *rat)
 {
-   switch(get_etiquette(rat))
-   {
-      case LETTRE:
-      return false;
-         break;
+    if(!rat)
+        return NULL;
 
-      case EPSILON:
-         return true;
-         break;
+    switch(get_etiquette(rat))
+    {
+        case EPSILON:
+            return true;
+            break;
 
-      case UNION:
-         return (contient_mot_vide(fils_gauche(rat)) 
-            || contient_mot_vide(fils_droit(rat)));       
-         break;
+        case LETTRE:
+            return false;
+            break;
 
-      case CONCAT:
-         return (contient_mot_vide(fils_gauche(rat))
-            && contient_mot_vide(fils_droit(rat)));
-         break;
+        case UNION:
+            return contient_mot_vide(fils_gauche(rat))
+            || contient_mot_vide(fils_droit(rat));
+            break;
 
-      case STAR:
-         return true;
-         break;
-         
-      default:
-         break;
-   }
-   return false;
+        case CONCAT:
+            return contient_mot_vide(fils_gauche(rat))
+            && contient_mot_vide(fils_droit(rat));
+            break;
+
+        case STAR:
+            return true;
+            break;
+
+        default:
+            assert(false);
+            break;
+    }
+}
+
+void premier_recursif(Ensemble *ensemble_premier, Rationnel *rat)
+{
+    if(!rat)
+        return;
+
+    switch(get_etiquette(rat))
+    {
+        case EPSILON:
+            break;
+
+        case LETTRE:
+            ajouter_element(ensemble_premier, get_position_min(rat));
+            break;
+
+        case UNION:
+            premier_recursif(ensemble_premier, fils_gauche(rat));
+            premier_recursif(ensemble_premier, fils_droit(rat));
+            break;
+
+        case CONCAT:
+            premier_recursif(ensemble_premier, fils_gauche(rat));
+			if(contient_mot_vide(fils_gauche(rat)))
+				premier_recursif(ensemble_premier, fils_droit(rat));
+            break;
+
+        case STAR:
+            premier_recursif(ensemble_premier, fils(rat));
+            break;
+
+        default:
+            assert(false);
+            break;
+    }
 }
 
 Ensemble *premier(Rationnel *rat)
 {
-   if(!rat)
-      return NULL;
+    if(!rat)
+        return NULL;
 
-  Ensemble *ensemble_premier = creer_ensemble(NULL,NULL,NULL);
-  switch(get_etiquette(rat))
-   {
-      case LETTRE:
-         ajouter_element(ensemble_premier, get_position_min(rat));
-         break;
-
-      case EPSILON:  
-         break;
-
-      case UNION:
-         ajouter_elements(ensemble_premier, premier(fils_gauche(rat)));
-         ajouter_elements(ensemble_premier, premier(fils_droit(rat)));
-            
-         break;
-
-      case CONCAT:
-         if (contient_mot_vide(fils_gauche(rat)))
-         {
-            ajouter_elements(ensemble_premier, premier(fils_gauche(rat)));
-            ajouter_elements(ensemble_premier, premier(fils_droit(rat)));
-         }
-         else
-         {
-            ajouter_elements(ensemble_premier, premier(fils_gauche(rat)));
-         }
-         break;
-
-      case STAR:
-         ajouter_elements(ensemble_premier, premier(fils_gauche(rat)));
-         break;
-         
-      default:
-         break;
-   }
-   return ensemble_premier;
+    Ensemble *ensemble_premier = creer_ensemble(NULL, NULL, NULL);
+    premier_recursif(ensemble_premier, rat);
+    return ensemble_premier;
 }
 
+void dernier_recursif(Ensemble *ensemble_dernier, Rationnel *rat)
+{
+    if(!rat)
+        return;
 
+    switch(get_etiquette(rat))
+    {
+        case EPSILON:
+            break;
+
+        case LETTRE:
+            ajouter_element(ensemble_dernier, get_position_min(rat));
+            break;
+
+        case UNION:
+            dernier_recursif(ensemble_dernier, fils_gauche(rat));
+            dernier_recursif(ensemble_dernier, fils_droit(rat));
+            break;
+
+        case CONCAT:
+			if(contient_mot_vide(fils_droit(rat)))
+				dernier_recursif(ensemble_dernier, fils_gauche(rat));
+            dernier_recursif(ensemble_dernier, fils_droit(rat));
+            break;
+
+        case STAR:
+            dernier_recursif(ensemble_dernier, fils(rat));
+            break;
+
+        default:
+            assert(false);
+            break;
+    }
+}
 
 Ensemble *dernier(Rationnel *rat)
 {
-   Ensemble *ensemble_dernier = creer_ensemble(NULL,NULL,NULL);
-   switch(get_etiquette(rat))
-   {
-      case LETTRE:
-         ajouter_element(ensemble_dernier, get_position_min(rat));
-         break;
+   if(!rat)
+        return NULL;
 
-      case EPSILON:  
-         break;
+    Ensemble *ensemble_dernier = creer_ensemble(NULL, NULL, NULL);
+    dernier_recursif(ensemble_dernier, rat);
+    return ensemble_dernier;
+}
 
-      case UNION:
-         ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat)));
-         ajouter_elements(ensemble_dernier, dernier(fils_droit(rat)));
-            
-         break;
+Ensemble *suivant_recursif(Ensemble *ensemble_suivant, Rationnel *rat, int position){
+    if(!rat)
+        return NULL;
 
-      case CONCAT:
-         if (contient_mot_vide(fils_droit(rat)))
-         {
-            ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat)));
-            ajouter_elements(ensemble_dernier, dernier(fils_droit(rat)));
-           
-         }
-         else
-         {
-             ajouter_elements(ensemble_dernier, dernier(fils_droit(rat)));
-            
-         }
-         break;
+    switch(get_etiquette(rat))
+    {
+        case EPSILON:
+            break;
 
-      case STAR:
-         ajouter_elements(ensemble_dernier, dernier(fils_gauche(rat)));
-         break;
-         
-      default:
-         break;
-   }
-   return ensemble_dernier;
+        case LETTRE:
+            break;
+
+        case UNION:
+            ajouter_elements(ensemble_suivant, suivant_recursif(ensemble_suivant, fils_gauche(rat), position));
+            ajouter_elements(ensemble_suivant, suivant_recursif(ensemble_suivant, fils_droit(rat), position));
+            break;
+
+        case CONCAT:
+			ajouter_elements(ensemble_suivant, suivant_recursif(ensemble_suivant, fils_gauche(rat), position));
+            ajouter_elements(ensemble_suivant, suivant_recursif(ensemble_suivant, fils_droit(rat), position));
+            if (est_dans_l_ensemble(dernier(fils_gauche(rat)), position))
+				ajouter_elements(ensemble_suivant, premier(fils_droit(rat)));
+            break;
+
+        case STAR:
+            if (est_dans_l_ensemble(dernier(rat), position))
+				ajouter_elements(ensemble_suivant, premier(rat));
+			ajouter_elements(ensemble_suivant, suivant_recursif(ensemble_suivant, fils(rat), position));
+            break;
+
+        default:
+            assert(false);
+            break;
+    }
+    return ensemble_suivant;
 }
 
 Ensemble *suivant(Rationnel *rat, int position)
 {
-   Ensemble * ensemble_suivant = creer_ensemble(NULL, NULL, NULL);   
-   switch(get_etiquette(rat))
-   {
-      case LETTRE: 
-         break;
+    if(!rat)
+        return NULL;
 
-      case EPSILON:  
-         break;
+    if(position < 1 || position > get_position_max(rat))
+        return NULL;
 
-      case UNION:
-         ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position));
-         ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position));            
-         break;
-
-      case CONCAT:
-        if (est_dans_l_ensemble(dernier(fils_gauche(rat)),position))
-        {
-           ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position));
-           ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position));
-           ajouter_elements(ensemble_suivant, premier(fils_droit(rat)));
-        }
-        else
-        {
-            ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position));
-            ajouter_elements(ensemble_suivant, suivant(fils_droit(rat), position));
-        }
-         break;
-
-      case STAR:
-
-    
-        if (est_dans_l_ensemble(dernier(rat), position))
-        {
-           ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position));
-           ajouter_elements(ensemble_suivant, premier(rat));
-        }
-        else
-        {
-            ajouter_elements(ensemble_suivant, suivant(fils_gauche(rat), position));
-        }
-         break;
-         
-      default:
-         break;
-   }
-   return ensemble_suivant;
+    Ensemble *ensemble_suivant = creer_ensemble(NULL, NULL, NULL);
+    suivant_recursif(ensemble_suivant, rat, position);
+    return ensemble_suivant;
 }
-char lettre_position(Rationnel *rat, int position){
-  
-   switch(get_etiquette(rat))
-   {
-      case LETTRE:
-        return get_lettre(rat);
-        break;
 
-      case CONCAT:
+char lettre_position(Rationnel *rat, int position)
+{
+    switch(get_etiquette(rat))
+    {
+        case LETTRE:
+            return get_lettre(rat);
+            break;
 
-      case UNION:
-        if (position < get_position_min(fils_droit(rat)))
-        {
-          return lettre_position(fils_gauche(rat), position);
-        }
-        else
-        {
-          return lettre_position(fils_droit(rat), position);          
-        }
-        break;
+        case CONCAT:
 
-      case STAR:
-          return lettre_position(fils_gauche(rat), position);
-         break;
-      default:
-        ERREUR("ERREUR");
-        break;
-   }
+        case UNION:
+            if (position < get_position_min(fils_droit(rat)))
+            {
+                return lettre_position(fils_gauche(rat), position);
+            }
+            else
+            {
+                return lettre_position(fils_droit(rat), position);
+            }
+            break;
+
+        case STAR:
+            return lettre_position(fils(rat), position);
+            break;
+
+        default:
+            ERREUR("ERREUR");
+            break;
+    }
 
 }
+
 Automate *Glushkov(Rationnel *rat)
 {
-      numeroter_rationnel(rat);
-      Automate * automate_final = creer_automate();
-       
-       Ensemble * ensemble_premier = premier(rat);
-       Ensemble * ensemble_dernier = dernier(rat);
+    numeroter_rationnel(rat);
+    Automate * automate_final = creer_automate();
 
-       Ensemble_iterateur it1;
+    Ensemble * ensemble_premier = premier(rat);
+    Ensemble * ensemble_dernier = dernier(rat);
 
-       ajouter_etat_initial(automate_final, 0);
-     for(
-       it1 = premier_iterateur_ensemble( ensemble_dernier );
-       ! iterateur_ensemble_est_vide( it1 );
-       it1 = iterateur_suivant_ensemble( it1 )
-       ){
-       ajouter_etat_final(automate_final, get_element(it1));
-     }
-     
-     
-     if (contient_mot_vide(rat))
-     {
-       ajouter_etat_final(automate_final , 0);
-     }
+    Ensemble_iterateur it1;
 
-     for(
-       it1 = premier_iterateur_ensemble(ensemble_premier);
-       ! iterateur_ensemble_est_vide( it1 );
-       it1 = iterateur_suivant_ensemble( it1 )
-       ){
-       ajouter_transition(automate_final,0 , lettre_position(rat, get_element(it1)), get_element(it1));
+    ajouter_etat_initial(automate_final, 0);
+    for(
+        it1 = premier_iterateur_ensemble( ensemble_dernier );
+        ! iterateur_ensemble_est_vide( it1 );
+        it1 = iterateur_suivant_ensemble( it1 )
+        )
+    {
+        ajouter_etat_final(automate_final, get_element(it1));
+    }
 
-     }
+    if (contient_mot_vide(rat))
+    {
+        ajouter_etat_final(automate_final , 0);
+    }
 
+    for(
+        it1 = premier_iterateur_ensemble(ensemble_premier);
+        ! iterateur_ensemble_est_vide( it1 );
+        it1 = iterateur_suivant_ensemble( it1 )
+        )
+    {
+        ajouter_transition(automate_final,0 , lettre_position(rat, get_element(it1)), get_element(it1));
+    }
 
+    for(int i = 1; i <= get_position_max(rat);++i)
+    {
 
-     for (int i = 1; i <= get_position_max(rat);++i)
-     {
-       
-       for(
-         it1 = premier_iterateur_ensemble(suivant(rat, i));
-         ! iterateur_ensemble_est_vide( it1 );
-         it1 = iterateur_suivant_ensemble( it1 )
-         ){
+        for(
+            it1 = premier_iterateur_ensemble(suivant(rat, i));
+            ! iterateur_ensemble_est_vide( it1 );
+            it1 = iterateur_suivant_ensemble( it1 )
+            )
+        {
+            ajouter_transition(automate_final,i , lettre_position(rat, get_element(it1)), get_element(it1));
+        }
 
-         ajouter_transition(automate_final,i , lettre_position(rat, get_element(it1)), get_element(it1));
-       }
-       
-     }
-     liberer_ensemble(ensemble_premier);
-     liberer_ensemble(ensemble_dernier);
-   return automate_final;
+    }
+
+    liberer_ensemble(ensemble_premier);
+    liberer_ensemble(ensemble_dernier);
+
+    return automate_final;
 }
 
 bool meme_langage (const char *expr1, const char* expr2)
