@@ -1,4 +1,17 @@
 makefile
+log
+parse.c
+parse.h
+scan.c
+scan.h
+test
+tests/test_suivant
+tests/test_premier
+tests/test_meme_langage
+tests/test_glushkov
+tests/test_creer_automate_minimal
+tests/test_creer_automate_determisite
+tests/test_automate_miroir
 
 # Object files
 *.o
