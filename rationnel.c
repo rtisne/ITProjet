@@ -365,7 +365,7 @@ int numeroter_rationnel_recursif(Rationnel *rat)
 void numeroter_rationnel(Rationnel *rat)
 {
     if(!rat)
-        return;
+        return NULL;
 
     set_position_min(rat, 1);
     numeroter_rationnel_recursif(rat);
@@ -632,12 +632,44 @@ Automate *Glushkov(Rationnel *rat)
 
 bool meme_langage (const char *expr1, const char* expr2)
 {
-   A_FAIRE_RETURN(true);
+  // pour verifier si les epxressions rationnelles décrivent le même language il faut comparer leur automate minimal 
+  // récupération des expressions rationnelles
+  Rationnel * r1 = expression_to_rationnel(expr1);
+  Rationnel * r2 = expression_to_rationnel(expr2);
+   
+  // numérotation des expressions rationnelles
+  numeroter_rationnel(r1);
+  numeroter_rationnel(r2);
+   
+  // récupération des automates de Glushkov à partir des expressions rationnelles 
+  Automate * g1 = Glushkov(r1);
+  Automate * g2 = Glushkov(r2);
+   
+  // on récupère les automates minimaux à partir des automates de Glushkov
+  Automate * a1 = creer_automate_minimal(g1);
+  Automate * a2 = creer_automate_minimal(g2);
+  
+  // on compare les deux automates
+  int res = comparer_automates(a1, a2);
+   
+   
+  liberer_automate(a1);
+  liberer_automate(a2);
+  
+  return (res == 1);
 }
 
 Systeme systeme(Automate *automate)
 {
-   A_FAIRE_RETURN(NULL);
+   // int nbEtat = taille_ensemble(get_etats(automate));
+   //   Systeme s = malloc(nbEtat * sizeof(Rationnel**));
+   //   for(int i = 0 ;i<nbEtat;i++){
+   //       s[i] = malloc((nbEtat+1) * sizeof(Rationnel**));
+   //       for(int j = 0 ;j<=nbEtat;j++)
+   //          s[i][j] = NULL; 
+   //   }
+   //   pour_toute_transition(automate,ajoutSys,s);
+   //   return s;
 }
 
 void print_ligne(Rationnel **ligne, int n)
