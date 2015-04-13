@@ -694,17 +694,36 @@ void print_systeme(Systeme systeme, int n)
 
 Rationnel **resoudre_variable_arden(Rationnel **ligne, int numero_variable, int n)
 {
-   A_FAIRE_RETURN(NULL);
+  if (!ligne[numero_variable])
+    return ligne;
+  Rationnel* rat = ligne[numero_variable];
+  ligne[numero_variable] = NULL;
+  rat = Star(rat);
+  ligne[n] = ligne[n]?Union(ligne[n],rat):rat;
+  return ligne;
 }
 
 Rationnel **substituer_variable(Rationnel **ligne, int numero_variable, Rationnel **valeur_variable, int n)
 {
-   A_FAIRE_RETURN(NULL);
+  Rationnel* rat = ligne[numero_variable];
+  if (!rat)
+    return ligne;
+  ligne[numero_variable] = NULL;
+  for(int i = 0; i<=n;i++)
+    if (valeur_variable[i])
+      ligne[i] = ligne[i]?Union(ligne[i],Concat(rat,valeur_variable[i])):Concat(rat,valeur_variable[i]);
+  return ligne;
 }
 
 Systeme resoudre_systeme(Systeme systeme, int n)
 {
-   A_FAIRE_RETURN(NULL);
+  for (int i = 0; i<n; i++){
+    resoudre_variable_arden(systeme[i], i, n);
+    for (int j = 0; j<n; j++)
+      if (j!=i)
+        substituer_variable(systeme[j], i,systeme[i], n);
+  }
+  return systeme;
 }
 
 Rationnel *Arden(Automate *automate)
