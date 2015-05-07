@@ -6,6 +6,7 @@ scan.c
 scan.h
 test
 tests/test_suivant
+tests/test_suivant_2
 tests/test_premier
 tests/test_premier_2
 tests/test_meme_langage
