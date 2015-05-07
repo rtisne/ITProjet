@@ -18,13 +18,12 @@
  *    along with this Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include <automate.h>
-#include <rationnel.h>
-#include <ensemble.h>
-#include <outils.h>
-#include <parse.h>
-#include <scan.h>
+#include "automate.h"
+#include "rationnel.h"
+#include "ensemble.h"
+#include "outils.h"
+#include "parse.h"
+#include "scan.h"
 
 int test_glushkov(){
 	int result = 1;

@@ -29,6 +29,10 @@ int main()
     Automate *aMir = miroir(a);
     Automate *aMin = creer_automate_minimal(a);
 
+    Systeme sys1 = systeme(a);
+    Systeme sys2 = systeme(aMir);
+    Systeme sys3 = systeme(aMin);
+
     if(est_dans_l_ensemble(ep, 1)
         && ! est_dans_l_ensemble(ep, 2)
         && ! est_dans_l_ensemble(ep, 3)
@@ -77,6 +81,43 @@ int main()
     print_automate(aMir);
     printf("\nautomate minimal\n");
     print_automate(aMin);
+    printf("\nsysteme automate\n");
+    print_systeme(sys1, taille_ensemble(get_etats(a)));
+    printf("\nsysteme automate mirroir\n");
+    print_systeme(sys2, taille_ensemble(get_etats(aMir)));
+    printf("\nsysteme automate minimal\n");
+    print_systeme(sys3, taille_ensemble(get_etats(aMin)));
+
+    printf("\nmeme langage\n");
+    printf("(a.b)*.a et a.(b.a)*\t");
+    if(meme_langage("(a.b)*.a", "a.(b.a)*"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("(a*.b*)* et (a+b)*\t");
+    if(meme_langage("(a*.b*)*", "(a+b)*"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("(a*.b*)* et (a+b*)*\t");
+    if(meme_langage("(a*.b*)*", "(a+b*)*"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("(a*.b*)* et (a*+b*)*\t");
+    if(meme_langage("(a*.b*)*", "(a*+b*)*"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("(a*.b*)* et (a*+b*)\t");
+    if(meme_langage("(a*.b*)*", "(a*+b*)"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
 
     return 0;
 }

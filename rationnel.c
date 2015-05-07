@@ -365,12 +365,11 @@ int numeroter_rationnel_recursif(Rationnel *rat)
 void numeroter_rationnel(Rationnel *rat)
 {
     if(!rat)
-        return NULL;
+        return;
 
     set_position_min(rat, 1);
     numeroter_rationnel_recursif(rat);
 }
-
 
 bool contient_mot_vide(Rationnel *rat)
 {
@@ -573,7 +572,6 @@ char lettre_position(Rationnel *rat, int position)
             ERREUR("ERREUR");
             break;
     }
-
 }
 
 Automate *Glushkov(Rationnel *rat)
@@ -621,7 +619,6 @@ Automate *Glushkov(Rationnel *rat)
         {
             ajouter_transition(automate_final,i , lettre_position(rat, get_element(it1)), get_element(it1));
         }
-
     }
 
     liberer_ensemble(ensemble_premier);
@@ -630,104 +627,168 @@ Automate *Glushkov(Rationnel *rat)
     return automate_final;
 }
 
-bool meme_langage (const char *expr1, const char* expr2)
+bool comparer_automates(const Automate * a1, const Automate * a2)
 {
-  // pour verifier si les epxressions rationnelles décrivent le même language il faut comparer leur automate minimal 
-  // récupération des expressions rationnelles
-  Rationnel * r1 = expression_to_rationnel(expr1);
-  Rationnel * r2 = expression_to_rationnel(expr2);
-   
-  // numérotation des expressions rationnelles
-  numeroter_rationnel(r1);
-  numeroter_rationnel(r2);
-   
-  // récupération des automates de Glushkov à partir des expressions rationnelles 
-  Automate * g1 = Glushkov(r1);
-  Automate * g2 = Glushkov(r2);
-   
-  // on récupère les automates minimaux à partir des automates de Glushkov
-  Automate * a1 = creer_automate_minimal(g1);
-  Automate * a2 = creer_automate_minimal(g2);
-  
-  // on compare les deux automates
-  int res = comparer_automates(a1, a2);
-   
-   
-  liberer_automate(a1);
-  liberer_automate(a2);
-  
-  return (res == 1);
+    // on retourne faux si les etats, les alphabets, les etats initiaux, les etats finaux
+    // et le nombre de transitions des deux automates ne sont pas identique
+    if((comparer_ensemble(get_etats(a1), get_etats(a2)) != 0) ||
+       (comparer_ensemble(get_alphabet(a1), get_alphabet(a2)) != 0) ||
+       (comparer_ensemble(get_initiaux(a1), get_initiaux(a2)) != 0) ||
+       (comparer_ensemble(get_finaux(a1), get_finaux(a2)) != 0) ||
+       (nombre_de_transitions(a1) != nombre_de_transitions(a2)))
+        return false;
+
+    // on compare les transitions des deux automates
+    Table_iterateur it_a1;
+    Ensemble_iterateur it_fins;
+    for(it_a1 = premier_iterateur_table(a1->transitions);
+		! iterateur_est_vide(it_a1);
+		it_a1 = iterateur_suivant_table(it_a1))
+	{
+	    Cle *cle = (Cle *)get_cle(it_a1);
+        int origine = cle->origine;
+        char lettre = cle->lettre;
+
+        const Ensemble *fins = (Ensemble *)get_valeur(it_a1);
+
+         for(it_fins = premier_iterateur_ensemble(fins);
+            ! iterateur_ensemble_est_vide(it_fins);
+            it_fins = iterateur_suivant_ensemble(it_fins))
+        {
+            int fin = (int)get_element(it_fins);
+            if(!est_une_transition_de_l_automate(a2, origine, lettre, fin))
+                return false;
+        }
+	}
+    return true;
+}
+
+bool meme_langage(const char *expr1, const char* expr2)
+{
+    // pour verifier si les epxressions rationnelles décrivent le même language il faut comparer leur automate minimal
+    // récupération des expressions rationnelles
+    Rationnel * r1 = expression_to_rationnel(expr1);
+    Rationnel * r2 = expression_to_rationnel(expr2);
+
+    // numérotation des expressions rationnelles
+    numeroter_rationnel(r1);
+    numeroter_rationnel(r2);
+
+    // récupération des automates de Glushkov à partir des expressions rationnelles
+    Automate * g1 = Glushkov(r1);
+    Automate * g2 = Glushkov(r2);
+
+    // on récupère les automates minimaux à partir des automates de Glushkov
+    Automate * a1 = creer_automate_minimal(g1);
+    Automate * a2 = creer_automate_minimal(g2);
+
+    // on compare les deux automates
+    bool res = comparer_automates(a1, a2);
+
+    liberer_automate(a1);
+    liberer_automate(a2);
+    liberer_automate(g1);
+    liberer_automate(g2);
+
+    return res;
+}
+
+void action_lettre_system(int origine, char lettre, int fin, void* data)
+{
+    Systeme * sys = (Systeme *)data;
+    (*sys)[origine][fin] = Lettre(lettre);
 }
 
 Systeme systeme(Automate *automate)
 {
-   // int nbEtat = taille_ensemble(get_etats(automate));
-   //   Systeme s = malloc(nbEtat * sizeof(Rationnel**));
-   //   for(int i = 0 ;i<nbEtat;i++){
-   //       s[i] = malloc((nbEtat+1) * sizeof(Rationnel**));
-   //       for(int j = 0 ;j<=nbEtat;j++)
-   //          s[i][j] = NULL; 
-   //   }
-   //   pour_toute_transition(automate,ajoutSys,s);
-   //   return s;
+    int nbEtat = taille_ensemble(get_etats(automate));
+    // le nombre d'equation du systeme = nombre d'etats
+    Systeme s = malloc(nbEtat * sizeof(*s));
+    for(int i = 0; i < nbEtat; ++i)
+    {
+        // le nombre d'etats + epsilon
+        s[i] = malloc((nbEtat + 1) * sizeof(*s[i]));
+        for(int j = 0 ; j <= nbEtat; ++j)
+            s[i][j] = NULL;
+    }
+
+    // on complete le systeme en parcourant chaque transition de l'automate
+    pour_toute_transition(automate, action_lettre_system, &s);
+
+    // on ajoute les epsilons au systeme en parcourant les états finaux de l'automate
+    Ensemble_iterateur it;
+    Ensemble * fins = (Ensemble*) get_finaux(automate);
+    for(
+        it = premier_iterateur_ensemble( fins );
+        ! iterateur_ensemble_est_vide( it );
+        it = iterateur_suivant_ensemble( it )
+    ){
+        int ligne = (int)get_element(it);
+        s[ligne][nbEtat] = Epsilon();
+    }
+
+    return s;
 }
 
 void print_ligne(Rationnel **ligne, int n)
 {
-   for (int j = 0; j <=n; j++)
-      {
-         print_rationnel(ligne[j]);
-         if (j<n)
+    for(int j = 0; j <= n; j++)
+    {
+        print_rationnel(ligne[j]);
+        if(j < n)
             printf("X%d\t+\t", j);
-      }
-   printf("\n");
+    }
+    printf("\n");
 }
 
 void print_systeme(Systeme systeme, int n)
 {
-   for (int i = 0; i <= n-1; i++)
-   {
-      printf("X%d\t= ", i);
-      print_ligne(systeme[i], n);
-   }
+    for(int i = 0; i <= n-1; i++)
+    {
+        printf("X%d\t= ", i);
+        print_ligne(systeme[i], n);
+    }
 }
 
 Rationnel **resoudre_variable_arden(Rationnel **ligne, int numero_variable, int n)
 {
-  if (!ligne[numero_variable])
+    if(!ligne[numero_variable])
+        return ligne;
+    Rationnel* rat = ligne[numero_variable];
+    ligne[numero_variable] = NULL;
+    rat = Star(rat);
+    ligne[n] = ligne[n] ? Union(ligne[n], rat) : rat;
     return ligne;
-  Rationnel* rat = ligne[numero_variable];
-  ligne[numero_variable] = NULL;
-  rat = Star(rat);
-  ligne[n] = ligne[n]?Union(ligne[n],rat):rat;
-  return ligne;
 }
 
 Rationnel **substituer_variable(Rationnel **ligne, int numero_variable, Rationnel **valeur_variable, int n)
 {
-  Rationnel* rat = ligne[numero_variable];
-  if (!rat)
+    Rationnel* rat = ligne[numero_variable];
+    if(!rat)
+        return ligne;
+    ligne[numero_variable] = NULL;
+    for(int i = 0; i <= n; i++)
+        if (valeur_variable[i])
+            ligne[i] = ligne[i] ? Union(ligne[i], Concat(rat, valeur_variable[i])) : Concat(rat, valeur_variable[i]);
     return ligne;
-  ligne[numero_variable] = NULL;
-  for(int i = 0; i<=n;i++)
-    if (valeur_variable[i])
-      ligne[i] = ligne[i]?Union(ligne[i],Concat(rat,valeur_variable[i])):Concat(rat,valeur_variable[i]);
-  return ligne;
 }
 
 Systeme resoudre_systeme(Systeme systeme, int n)
 {
-  for (int i = 0; i<n; i++){
-    resoudre_variable_arden(systeme[i], i, n);
-    for (int j = 0; j<n; j++)
-      if (j!=i)
-        substituer_variable(systeme[j], i,systeme[i], n);
-  }
-  return systeme;
+    for(int i = 0; i < n; i++)
+    {
+        resoudre_variable_arden(systeme[i], i, n);
+        for(int j = 0; j < n; j++)
+            if(j != i)
+                substituer_variable(systeme[j], i, systeme[i], n);
+    }
+    return systeme;
 }
 
 Rationnel *Arden(Automate *automate)
 {
-   A_FAIRE_RETURN(NULL);
+   int nbEtat = taille_ensemble(get_etats(automate));
+   Systeme s = systeme(automate);
+   s = resoudre_systeme(s, nbEtat);
+   return NULL;
 }
-

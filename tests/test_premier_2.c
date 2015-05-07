@@ -31,14 +31,31 @@ int test_premier(){
 	int result = 1;
     {
        Rationnel * rat;
+       rat = expression_to_rationnel("a");
+       numeroter_rationnel(rat);
+       Ensemble * e = premier(rat);
+       
+       TEST(
+          1
+          && rat
+          && e
+          && est_dans_l_ensemble(e, 1)
+          && taille_ensemble( e ) == 1
+          , result);
+    }
+
+    {
+       Rationnel * rat;
        rat = expression_to_rationnel("a.b");
        numeroter_rationnel(rat);
        Ensemble * e = premier(rat);
        
        TEST(
           1
+          && rat
+          && e
           && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
+          && taille_ensemble( e ) == 1
           , result);
     }
 
@@ -50,10 +67,11 @@ int test_premier(){
        
        TEST(
           1
+          && rat
+          && e
           && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
           && est_dans_l_ensemble(e, 3)
-          && ! est_dans_l_ensemble(e, 4)
+          && taille_ensemble( e ) == 2
           , result);
     }
 
@@ -65,10 +83,32 @@ int test_premier(){
        
        TEST(
           1
+          && rat
+          && e
           && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
           && est_dans_l_ensemble(e, 3)
           && est_dans_l_ensemble(e, 4)
+          && taille_ensemble( e ) == 3
+          , result);
+    }
+
+    {
+       Rationnel * rat;
+       rat = expression_to_rationnel("(a.a)*.(b+((c+d.a)*.a)*.e)");
+       numeroter_rationnel(rat);
+       Ensemble * e = premier(rat);
+       
+       TEST(
+          1
+          && rat
+          && e
+          && est_dans_l_ensemble(e, 1)
+          && est_dans_l_ensemble(e, 3)
+          && est_dans_l_ensemble(e, 4)
+          && est_dans_l_ensemble(e, 5)
+          && est_dans_l_ensemble(e, 7)
+          && est_dans_l_ensemble(e, 8)
+          && taille_ensemble( e ) == 6
           , result);
     }
 

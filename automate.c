@@ -60,7 +60,6 @@ int get_min_etat( const Automate* automate ){
 	return min;
 }
 
-
 int comparer_cle(const Cle *a, const Cle *b) {
 	if( a->origine < b->origine )
 		return -1;
@@ -493,7 +492,6 @@ Automate * creer_intersection_des_automates(
 	return res;
 }
 
-
 int etat_minimal( const Automate * automate ){
 	int min = INT_MAX;
 	Ensemble_iterateur it1;
@@ -705,7 +703,6 @@ void action_creer_intersection_des_automates(
 	ajouter_transition( res, origine, lettre, fin );
 }
 
-
 int est_une_transition_de_l_automate(
 	const Automate* automate,
 	int origine, char lettre, int fin
@@ -850,7 +847,6 @@ Automate * creer_automate_deterministe( const Automate* automate ){
 				break;
 			}
 		}
-
 	}
 
 	pour_toute_valeur_table(
@@ -873,6 +869,4 @@ Automate * creer_automate_minimal( const Automate* automate )
 	automate_minimal = creer_automate_deterministe(automate_minimal);
 
 	return automate_minimal;
-
 }
-

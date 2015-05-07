@@ -18,7 +18,6 @@
  *    along with this Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "automate.h"
 #include "outils.h"
 #include "ensemble.h"

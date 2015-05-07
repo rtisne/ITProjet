@@ -18,58 +18,27 @@
  *    along with this Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** @file premier.c */ 
-
-#include <automate.h>
 #include <rationnel.h>
 #include <ensemble.h>
 #include <outils.h>
 #include <parse.h>
 #include <scan.h>
 
-int test_premier(){
+int test_meme_langage(){
 	int result = 1;
     {
-       Rationnel * rat;
-       rat = expression_to_rationnel("a.b");
-       numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
+       bool test1 = meme_langage("a", "a");
+       bool test2 = meme_langage("a", "b");
+       bool test3 = meme_langage("a.(b.a)*", "(a.b)*.a");
        
        TEST(
           1
-          && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
-          , result);
-    }
+          && test1
+          && ! test2
+          && test3
+          , result
+       );
 
-    {
-       Rationnel * rat;
-       rat = expression_to_rationnel("(a.a)*.(b.c)");
-       numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
-       
-       TEST(
-          1
-          && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
-          && est_dans_l_ensemble(e, 3)
-          && ! est_dans_l_ensemble(e, 4)
-          , result);
-    }
-
-    {
-       Rationnel * rat;
-       rat = expression_to_rationnel("(a.a)*.(b+c)");
-       numeroter_rationnel(rat);
-       Ensemble * e = premier(rat);
-       
-       TEST(
-          1
-          && est_dans_l_ensemble(e, 1)
-          && ! est_dans_l_ensemble(e, 2)
-          && est_dans_l_ensemble(e, 3)
-          && est_dans_l_ensemble(e, 4)
-          , result);
     }
 
     return result;
@@ -77,7 +46,7 @@ int test_premier(){
 
 int main(int argc, char *argv[])
 {
-   if( ! test_premier() )
+   if( ! test_meme_langage() )
     return 1; 
    
    return 0;

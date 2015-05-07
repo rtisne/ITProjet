@@ -7,11 +7,27 @@ scan.h
 test
 tests/test_suivant
 tests/test_premier
+tests/test_premier_2
 tests/test_meme_langage
+tests/test_meme_langage_2
 tests/test_glushkov
+tests/test_glushkov_2
 tests/test_creer_automate_minimal
 tests/test_creer_automate_determisite
-tests/test_automate_miroir
+tests/test_automate_accessible
+tests/test_automate_mirroir
+tests/test_automate_vide
+tests/test_contient_mot_vide
+tests/test_creer_automate
+tests/test_delta_delta_star
+tests/test_dernier
+tests/test_dernier_2
+tests/test_ensemble
+tests/test_etats_accessibles
+tests/test_mot_accepte
+tests/test_numeroter
+tests/test_numeroter_rationnel
+tests/test_table
 
 # Object files
 *.o
