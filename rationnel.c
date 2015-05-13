@@ -790,6 +790,7 @@ Rationnel *Arden(Automate *automate)
     Systeme s = systeme(automate);
     s = resoudre_systeme(s, nbEtat);
 
+    // Union des etats initiaux
     Rationnel * arden = NULL;
     Ensemble_iterateur it;
     Ensemble * initiaux = (Ensemble*) get_initiaux(automate);
