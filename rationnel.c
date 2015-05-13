@@ -726,7 +726,6 @@ Systeme systeme(Automate *automate)
         int ligne = (int)get_element(it);
         s[ligne][nbEtat] = Epsilon();
     }
-
     return s;
 }
 
@@ -787,8 +786,19 @@ Systeme resoudre_systeme(Systeme systeme, int n)
 
 Rationnel *Arden(Automate *automate)
 {
-   int nbEtat = taille_ensemble(get_etats(automate));
-   Systeme s = systeme(automate);
-   s = resoudre_systeme(s, nbEtat);
-   return NULL;
+    int nbEtat = taille_ensemble(get_etats(automate));
+    Systeme s = systeme(automate);
+    s = resoudre_systeme(s, nbEtat);
+
+    Rationnel * arden = NULL;
+    Ensemble_iterateur it;
+    Ensemble * initiaux = (Ensemble*) get_initiaux(automate);
+    for(it = premier_iterateur_ensemble( initiaux );
+        ! iterateur_ensemble_est_vide( it );
+        it = iterateur_suivant_ensemble( it ))
+    {
+        int ligne = (int)get_element(it);
+        arden = Union(arden, s[ligne][nbEtat]);
+    }
+    return arden;
 }

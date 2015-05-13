@@ -29,9 +29,16 @@ int main()
     Automate *aMir = miroir(a);
     Automate *aMin = creer_automate_minimal(a);
 
+    Rationnel *rattest = expression_to_rationnel("(b+a.b*.a)*");
+    Automate *atest = Glushkov(rattest);
+    Automate *atestMin = creer_automate_minimal(atest);
+
     Systeme sys1 = systeme(a);
     Systeme sys2 = systeme(aMir);
     Systeme sys3 = systeme(aMin);
+    Systeme sys4 = systeme(atestMin);
+    Systeme sys5 = systeme(atestMin);
+    sys5 = resoudre_systeme(sys5, taille_ensemble(get_etats(atestMin)));
 
     if(est_dans_l_ensemble(ep, 1)
         && ! est_dans_l_ensemble(ep, 2)
@@ -87,6 +94,14 @@ int main()
     print_systeme(sys2, taille_ensemble(get_etats(aMir)));
     printf("\nsysteme automate minimal\n");
     print_systeme(sys3, taille_ensemble(get_etats(aMin)));
+    printf("\nsysteme automate autre\n");
+    print_automate(atestMin);
+    printf("\n");
+    print_systeme(sys4, taille_ensemble(get_etats(atestMin)));
+    printf("\nsysteme automate autre resolu\n");
+    print_systeme(sys5, taille_ensemble(get_etats(atestMin)));
+    print_rationnel(Arden(atestMin));
+    printf("\n");
 
     printf("\nmeme langage\n");
     printf("(a.b)*.a et a.(b.a)*\t");
@@ -118,6 +133,18 @@ int main()
         printf("meme langage pass\n");
     else
         printf("meme langage fail\n");
+
+    printf("(b+a.b*.a)* et b*+a.((a+a.b*)+(b+a.a)*)\t");
+    if(meme_langage("(b+a.b*.a)*", "b*+a.((a+a.b*)+(b+a.a)*)"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("\n");
+    print_automate(creer_automate_minimal(Glushkov(expression_to_rationnel("(b+a.b*.a)*"))));
+    printf("\n");
+    print_automate(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(b+a.b*.a)*")))))));
+    printf("\n");
 
     return 0;
 }
