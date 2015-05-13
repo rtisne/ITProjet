@@ -754,9 +754,20 @@ Rationnel **resoudre_variable_arden(Rationnel **ligne, int numero_variable, int 
     if(!ligne[numero_variable])
         return ligne;
     Rationnel* rat = ligne[numero_variable];
-    ligne[numero_variable] = NULL;
-    rat = Star(rat);
-    ligne[n] = ligne[n] ? Union(ligne[n], rat) : rat;
+    // X = UX+V => U*V
+    if(rat)
+    {
+        rat = Star(rat);
+        for(int i = 0; i <= n; i++)
+        {
+            if(numero_variable == i)
+                ligne[i] = NULL;
+            else if(ligne[i])
+            {
+                ligne[i] = Concat(rat, ligne[i]);
+            }
+        }
+    }
     return ligne;
 }
 
@@ -767,8 +778,10 @@ Rationnel **substituer_variable(Rationnel **ligne, int numero_variable, Rationne
         return ligne;
     ligne[numero_variable] = NULL;
     for(int i = 0; i <= n; i++)
-        if (valeur_variable[i])
+    {
+        if(valeur_variable[i])
             ligne[i] = ligne[i] ? Union(ligne[i], Concat(rat, valeur_variable[i])) : Concat(rat, valeur_variable[i]);
+    }
     return ligne;
 }
 
@@ -778,14 +791,17 @@ Systeme resoudre_systeme(Systeme systeme, int n)
     {
         resoudre_variable_arden(systeme[i], i, n);
         for(int j = 0; j < n; j++)
+        {
             if(j != i)
                 substituer_variable(systeme[j], i, systeme[i], n);
+        }
     }
     return systeme;
 }
 
 Rationnel *Arden(Automate *automate)
 {
+    // creation et resolution du systeme associe a l'automate
     int nbEtat = taille_ensemble(get_etats(automate));
     Systeme s = systeme(automate);
     s = resoudre_systeme(s, nbEtat);

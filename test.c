@@ -134,8 +134,14 @@ int main()
     else
         printf("meme langage fail\n");
 
-    printf("(b+a.b*.a)* et b*+a.((a+a.b*)+(b+a.a)*)\t");
-    if(meme_langage("(b+a.b*.a)*", "b*+a.((a+a.b*)+(b+a.a)*)"))
+    printf("(b+a.b*.a)* et b*+b*.a.(b+a.b*.a)*.a.b*\t");
+    if(meme_langage("(b+a.b*.a)*", "b*+b*.a.(b+a.b*.a)*.a.b*"))
+        printf("meme langage pass\n");
+    else
+        printf("meme langage fail\n");
+
+    printf("(a.(a.b)*.a.a)*.a.(a.b)* et a+a.a.((b+a.a).a)*.(b+a.a)\t");
+    if(meme_langage("(a.(a.b)*.a.a)*.a.(a.b)*", "a+a.a.((b+a.a).a)*.(b+a.a)"))
         printf("meme langage pass\n");
     else
         printf("meme langage fail\n");
@@ -144,6 +150,25 @@ int main()
     print_automate(creer_automate_minimal(Glushkov(expression_to_rationnel("(b+a.b*.a)*"))));
     printf("\n");
     print_automate(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(b+a.b*.a)*")))))));
+    printf("\n");
+
+    int taille = taille_ensemble(get_etats(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*")))));
+    int taille2 = taille_ensemble(get_etats(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*"))))))));
+
+    printf("\n");
+    print_automate(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*"))));
+    printf("\n");
+    print_automate(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*")))))));
+    printf("\n");
+    printf("\n");
+    print_systeme(systeme(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*")))), taille);
+    printf("\n");
+    print_systeme(systeme(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*"))))))), taille2);
+    printf("\n");
+    printf("\n");
+    print_systeme(resoudre_systeme(systeme(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*")))), taille), taille);
+    printf("\n");
+    print_systeme(resoudre_systeme(systeme(creer_automate_minimal(Glushkov(Arden(creer_automate_minimal(Glushkov(expression_to_rationnel("(a.(a.b)*.a.a)*.a.(a.b)*"))))))), taille2), taille2);
     printf("\n");
 
     return 0;
